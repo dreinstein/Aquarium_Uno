@@ -16,7 +16,7 @@ DS3231  rtc(SDA, SCL);
 #define RELAIS4       11     //HEATER
 #define TEMPSENSOR    8	    //TempSensor
 #define SERVICEBUTTON 7     //ServiceButton
-#define ONOFFBUTTON   12    //ONOFFBUTTON
+#define ONOFFBUTTON   6    //ONOFFBUTTON
 
 
 #define CURSERPOSTEMPSTRING  0
@@ -44,7 +44,7 @@ bool secOverflowFlag = false;
 
 OneWire  ds(TEMPSENSOR);
 DallasTemperature sensors(&ds);
-LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+LiquidCrystal lcd(12, 13, 5, 4, 3, 2);
 
 Time timeToggleTempDisplay;
 
