@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2017-05-07 19:35:40
+//This file has been generated on 2017-05-07 20:21:22
 
 #include "Arduino.h"
 #include "Arduino.h"
@@ -21,6 +21,8 @@ void setDisplayToggleValues() ;
 void setAirTemp() ;
 void setWaterTemp(float temp) ;
 bool isWeekend() ;
+void setServiceMode() ;
+bool setOff() ;
 
 #include "AquariumSteuerung.ino"
 

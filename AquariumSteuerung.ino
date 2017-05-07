@@ -11,10 +11,12 @@ DS3231  rtc(SDA, SCL);
 
 
 // IN/OUT
-#define RELAIS2   9     //LIGHT
-#define RELAIS3  10     //PUMP
-#define RELAIS4  11     //HEATER
-#define TEMPSENSOR  8
+#define RELAIS2       9     //LIGHT
+#define RELAIS3       10     //PUMP
+#define RELAIS4       11     //HEATER
+#define TEMPSENSOR    8	    //TempSensor
+#define SERVICEBUTTON 7     //ServiceButton
+#define ONOFFBUTTON   12    //ONOFFBUTTON
 
 
 #define CURSERPOSTEMPSTRING  0
@@ -57,6 +59,8 @@ void setTemperature();
 void setTime();
 void setLighOnOff();
 bool isLightOn();
+void setServiceMode();
+bool setOff();
 
 
 
@@ -67,17 +71,16 @@ void setup()
 	pinMode(RELAIS2,OUTPUT);
 	pinMode(RELAIS3,OUTPUT);
 	pinMode(RELAIS4,OUTPUT);
+	pinMode(SERVICEBUTTON,INPUT);
+	pinMode(ONOFFBUTTON,INPUT);
 
 	lcd.begin(16, 2);
 	rtc.begin();
 	sensors.begin();
 	sensors.setResolution(TEMP_RESOLUTION);
 
+	void setOff();
 
-	//digitalWrite(relais1,LOW);
-	digitalWrite(RELAIS2,LOW);
-	digitalWrite(RELAIS3,LOW);
-	digitalWrite(RELAIS4,LOW);
 	Serial.begin(9600);
 
 
@@ -94,7 +97,11 @@ void loop()
 	setTime();
 	delay(400);
 	setTemperature();
-	setLighOnOff();
+	if(!setOff())
+	{
+		setLighOnOff();
+		setServiceMode();
+	}
 }
 
 bool isSwitchTemperatureDisplay()
@@ -350,3 +357,46 @@ bool isWeekend()
 	}
 	return false;
 }
+
+
+void setServiceMode()
+{
+	int val = digitalRead(SERVICEBUTTON);
+	if(val==HIGH)
+	{
+		digitalWrite(RELAIS2,LOW);  // Light ON
+		digitalWrite(RELAIS3,HIGH); //Pump out
+		digitalWrite( RELAIS4,HIGH); // Heater out
+	}
+	else
+	{
+		digitalWrite(RELAIS2,LOW);  // Light ON
+		digitalWrite(RELAIS3,LOW); //Pump ON
+		digitalWrite( RELAIS4,LOW); // Heater ON
+	}
+
+}
+
+bool setOff()
+{
+	int val = digitalRead(ONOFFBUTTON);
+	bool retVal = false;
+	if(val==HIGH)
+	{
+		digitalWrite(RELAIS2,HIGH);  // Light out
+		digitalWrite(RELAIS3,HIGH); //Pump out
+		digitalWrite( RELAIS4,HIGH); // Heater out
+		retVal=true;
+	}
+	else
+	{
+		digitalWrite(RELAIS2,LOW);  // Light out
+		digitalWrite(RELAIS3,LOW); //Pump out
+		digitalWrite( RELAIS4,LOW); // Heater out
+	}
+	return retVal;
+}
+
+
+
+
