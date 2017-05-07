@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2017-05-04 18:52:59
+//This file has been generated on 2017-05-07 19:35:40
 
 #include "Arduino.h"
 #include "Arduino.h"
@@ -12,8 +12,15 @@
 #include "DallasTemperature\DallasTemperature.h"
 void setup() ;
 void loop() ;
+bool isSwitchTemperatureDisplay() ;
 void setTemperature() ;
 void setTime() ;
+void setLighOnOff() ;
+bool isLightOn() ;
+void setDisplayToggleValues() ;
+void setAirTemp() ;
+void setWaterTemp(float temp) ;
+bool isWeekend() ;
 
 #include "AquariumSteuerung.ino"
 

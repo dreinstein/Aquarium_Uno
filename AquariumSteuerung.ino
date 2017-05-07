@@ -7,40 +7,82 @@
 // Init the DS3231 using the hardware interface
 DS3231  rtc(SDA, SCL);
 
-
 //The setup function is called once at startup of the sketch
 
+
+// IN/OUT
+#define RELAIS2   9     //LIGHT
+#define RELAIS3  10     //PUMP
+#define RELAIS4  11     //HEATER
+#define TEMPSENSOR  8
+
+
+#define CURSERPOSTEMPSTRING  0
+#define CURSERPOSTEMPVALUE   8
+#define CURSERPOSCSTRING     14
+#define MAXSEC				 59
+#define DISPLAYTOGGLETIME    20
+#define TEMP_RESOLUTION      12
+
+#define TIMELIGHTON_OVERWEEK   "07:30:00";
+#define TIMELIGHTOFF_OVERWEEK  "22:00:00";
+#define TIMELIGHTON_WEEKEND    "19:35:40";
+#define TIMELIGHTOFF_WEEKEND   "19:35:50";
+
+
 const char* stringBadTempValue = "Temperaturfehler";
-const char* stringTempValue = "Temp:  ";
+const char* stringTempValueWater = "Wasser:  ";
+const char* stringTempValueAir   = "Luft";
+const char* saturday = "Sat";
+const char* sunday = "Sun";
 
-const int relais2 = 9;
-const int relais3 = 10;
-const int relais4 = 11;
-const int tempSensor = 8;
+bool waterTempDisplayActive = false;
+bool secOverflowFlag = false;
 
-OneWire  ds(tempSensor);
+
+OneWire  ds(TEMPSENSOR);
 DallasTemperature sensors(&ds);
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+Time timeToggleTempDisplay;
+
+
+// functionDeclaration
+bool isWeekend();
+void setDisplayToggleValues();
+void setAirTemp();
+void setWaterTemp(float temp);
+bool isSwitchTemperatureDisplay();
+void setTemperature();
+void setTime();
+void setLighOnOff();
+bool isLightOn();
+
 
 
 void setup()
 {
 // Add your initialization code here
 	//pinMode(relais1,OUTPUT);
-	pinMode(relais2,OUTPUT);
-	pinMode(relais3,OUTPUT);
-	pinMode(relais4,OUTPUT);
+	pinMode(RELAIS2,OUTPUT);
+	pinMode(RELAIS3,OUTPUT);
+	pinMode(RELAIS4,OUTPUT);
 
 	lcd.begin(16, 2);
 	rtc.begin();
 	sensors.begin();
+	sensors.setResolution(TEMP_RESOLUTION);
 
 
 	//digitalWrite(relais1,LOW);
-	digitalWrite(relais2,LOW);
-	digitalWrite(relais3,LOW);
-	digitalWrite(relais4,LOW);
+	digitalWrite(RELAIS2,LOW);
+	digitalWrite(RELAIS3,LOW);
+	digitalWrite(RELAIS4,LOW);
 	Serial.begin(9600);
+
+
+	setAirTemp();
+	setDisplayToggleValues();
 	/*rtc.setDate(30,04,2017);
 	rtc.setDOW(7);
 	rtc.setTime(19,47,50);*/
@@ -52,27 +94,51 @@ void loop()
 	setTime();
 	delay(400);
 	setTemperature();
-	//delay(1000);
+	setLighOnOff();
 }
+
+bool isSwitchTemperatureDisplay()
+{
+	Time actTime = rtc.getTime();
+
+	if(secOverflowFlag && actTime.sec > DISPLAYTOGGLETIME)
+	{
+		return false;
+	}
+
+	if(actTime.sec >= timeToggleTempDisplay.sec)
+	{
+		return true;
+	}
+	return false;
+}
+
 
 void setTemperature()
 {
-	// Send the command to get temperatures
-	  sensors.requestTemperatures();
-	  Serial.print("Temperature is: ");
-	  float celsius=sensors.getTempCByIndex(0);
-	  Serial.println(celsius); // Why "byIndex"? You can have more than one IC on the same bus. 0 refers to the first IC on the wire
 
-	  //Update value every 1 sec.
-	  if((celsius > 10) && (celsius < 40))
+	  sensors.requestTemperatures();
+	  float airtemp = rtc.getTemp();
+	  Serial.print("air temp is: ");
+	  Serial.print(airtemp);
+	  Serial.print("     Temperature is: ");
+	  float celsius=sensors.getTempCByIndex(0);
+	  Serial.println(celsius);
+
+	  if(!waterTempDisplayActive && isSwitchTemperatureDisplay())
 	  {
-		  lcd.setCursor(0,0);
-	  	  lcd.print(stringTempValue);
-	  	  lcd.setCursor(6,0);
-	  	  lcd.print(celsius);
-	  	  lcd.setCursor(12, 0);
-	      lcd.print("C");
-         // delay(500);
+		  setDisplayToggleValues();
+		  waterTempDisplayActive = true;
+		  if((celsius > 10) && (celsius < 40))
+		  {
+			  setWaterTemp(celsius);
+		  }
+	  }
+	  else if(waterTempDisplayActive && isSwitchTemperatureDisplay())
+	  {
+		  setDisplayToggleValues();
+		  waterTempDisplayActive = false;
+		  setAirTemp();
 	  }
 }
 
@@ -80,17 +146,207 @@ void setTemperature()
 void setTime()
 {
 	lcd.setCursor(0, 1);
-	lcd.print(rtc.getDOWStr());
-	//Serial.print(rtc.getDOWStr());
-	//Serial.print(" ");
-
-	// Send date
-	//Serial.print(rtc.getDateStr());
-	//Serial.print(" -- ");
-
-	// Send time
-	//Serial.println(rtc.getTimeStr());
+	lcd.print(rtc.getDOWStr(FORMAT_SHORT));
 	lcd.setCursor(8, 1);
 	lcd.print(rtc.getTimeStr());
-	//delay(1000);
+	Serial.print("Time:   ");
+	Serial.print(rtc.getTimeStr());
+	Serial.print("\n");
+}
+
+void setLighOnOff()
+{
+	if(isLightOn())
+	{
+		Serial.print("Light On\n");
+		digitalWrite(RELAIS2,LOW);
+	}
+	else
+	{
+		Serial.print("Light off\n");
+		digitalWrite(RELAIS2,HIGH);
+	}
+}
+
+
+
+bool isLightOn()
+{
+	uint8_t hour = rtc.getTime().hour;
+	uint8_t min  = rtc.getTime().min;
+	uint8_t sec = rtc.getTime().sec;
+	char* timeLightOn;
+	char* timeLightOff;
+
+	if(isWeekend())
+	{
+		timeLightOn = (char*)TIMELIGHTON_WEEKEND;
+		timeLightOff = (char*)TIMELIGHTOFF_WEEKEND;
+		Serial.print("TimelineOff    ");
+		Serial.println(timeLightOff);
+
+	}
+	else
+	{
+		timeLightOn = (char*)TIMELIGHTON_OVERWEEK;
+		timeLightOff = (char*)TIMELIGHTOFF_OVERWEEK;
+	}
+
+	char *onhour;
+	char *onmin;
+	char *onsec;
+	char *offhour;
+	char *offmin;
+	char *offsec;
+
+	onhour = timeLightOn;
+	offhour = timeLightOff;
+
+	Serial.print("offhour   ");
+	Serial.println(offhour);
+
+	onmin = timeLightOn+3;
+	//onmin[1] = timeLightOn[4];
+	offmin = timeLightOff+3;
+	//offmin[1] = timeLightOff[4];
+
+	Serial.print("offmin   ");
+	Serial.println(offmin);
+
+	onsec = timeLightOn+6;
+	offsec = timeLightOff+6;
+
+	Serial.print("offsec   ");
+	Serial.println(offsec);
+
+
+	uint8_t intOnHour = atoi(onhour);
+	uint8_t intOffHour = atoi(offhour);
+	uint8_t intOnMinute = atoi(onmin);
+	uint8_t intOffMinute = atoi(offmin);
+	uint8_t intOnSecond = atoi(onsec);
+	uint8_t intOffSecond = atoi(offsec);
+
+	Serial.print("integer offhour   ");
+	Serial.println(intOffHour);
+	Serial.print("integer offminute   ");
+	Serial.println(intOffMinute);
+	Serial.print("integer offsecond   ");
+	Serial.println(intOffSecond);
+	Serial.print("integer onhour   ");
+	Serial.println(intOnHour);
+	Serial.print("integer onminute   ");
+	Serial.println(intOnMinute);
+	Serial.print("integer onsecond   ");
+	Serial.println(intOnSecond);
+
+
+
+// 1) hour greater
+	if(hour > intOnHour)
+	{
+		Serial.println("actual hour greater than spec. hour");
+		if(hour < intOffHour)
+		{
+			Serial.println("Light on hour");
+			return true;
+		}
+	}
+	if((hour > intOnHour) && (hour == intOffHour)  && (min < intOffMinute))
+	{
+		Serial.println("actual min lowe than intminOff");
+		return true;
+
+	}
+
+	if((hour > intOnHour) && (hour == intOffHour) &&  (min > intOnMinute) && (min == intOffMinute) && (sec < intOffSecond))
+	{
+		Serial.println("actual second lower than intminSecond");
+		return true;
+
+	}
+
+// 2. min greater
+	if((hour == intOnHour) && (min > intOnMinute))
+	{
+		Serial.println("hour equal min greater");
+		if(min < intOffMinute)
+		{
+			Serial.println("Light on minute");
+			return true;
+		}
+	}
+
+	if((hour == intOnHour) && (min == intOffMinute)  && (sec > intOnSecond))
+	{
+		Serial.println("hour equal min equal sec greater ");
+		if((sec < intOffSecond))
+		{
+			Serial.println("Light on second");
+			return true;
+		}
+	}
+
+	Serial.println("Light is off");
+	return false;
+}
+
+
+
+
+void setDisplayToggleValues()
+{
+	timeToggleTempDisplay = rtc.getTime();
+	uint8_t t  = timeToggleTempDisplay.sec + DISPLAYTOGGLETIME;
+	if(t >= MAXSEC)
+	{
+		secOverflowFlag = true;
+		t = t - MAXSEC;
+
+	}
+	else
+	{
+		secOverflowFlag = false;
+	}
+
+	timeToggleTempDisplay.sec = t;
+	Serial.print("toggleTime    ");
+	Serial.print(timeToggleTempDisplay.sec);
+	Serial.print("     ");
+//	Serial.print(t);
+	Serial.print("\n");
+}
+
+
+void setAirTemp()
+{
+	lcd.setCursor(CURSERPOSTEMPSTRING,0);
+	lcd.clear();
+	lcd.print(stringTempValueAir);
+	lcd.setCursor(CURSERPOSTEMPVALUE,0);
+	lcd.print(rtc.getTemp());
+	lcd.setCursor(CURSERPOSCSTRING, 0);
+	lcd.print("C");
+}
+
+
+void setWaterTemp(float temp)
+{
+	lcd.setCursor(CURSERPOSTEMPSTRING,0);
+	lcd.print(stringTempValueWater);
+	lcd.setCursor(CURSERPOSTEMPVALUE,0);
+	lcd.print(temp);
+	lcd.setCursor(CURSERPOSCSTRING, 0);
+	lcd.print("C");
+}
+
+
+bool isWeekend()
+{
+	char* dayOfWeek = rtc.getDOWStr(FORMAT_SHORT);
+	if((dayOfWeek == saturday) || (dayOfWeek == sunday))
+	{
+		return true;
+	}
+	return false;
 }
