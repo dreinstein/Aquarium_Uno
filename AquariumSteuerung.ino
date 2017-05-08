@@ -11,12 +11,12 @@ DS3231  rtc(SDA, SCL);
 
 
 // IN/OUT
-#define RELAIS2       9     //LIGHT
-#define RELAIS3       10     //PUMP
-#define RELAIS4       11     //HEATER
-#define TEMPSENSOR    8	    //TempSensor
-#define SERVICEBUTTON 7     //ServiceButton
-#define ONOFFBUTTON   6    //ONOFFBUTTON
+#define RELAIS2       9     //LIGHT  //OUT
+#define RELAIS3       10     //PUMP  //OUT
+#define RELAIS4       11     //HEATER //OUT
+#define TEMPSENSOR    8	    //TempSensor  //IN
+#define SERVICEBUTTON 7     //ServiceButton  //IN
+#define ONOFFBUTTON   6    //ONOFFBUTTON     //IN
 
 
 #define CURSERPOSTEMPSTRING  0
@@ -30,6 +30,9 @@ DS3231  rtc(SDA, SCL);
 #define TIMELIGHTOFF_OVERWEEK  "22:00:00";
 #define TIMELIGHTON_WEEKEND    "19:35:40";
 #define TIMELIGHTOFF_WEEKEND   "19:35:50";
+
+#define WATERTEMP_HEATEROFF    25
+#define WATERTEMP_HEATERON     20
 
 
 const char* stringBadTempValue = "Temperaturfehler";
@@ -59,15 +62,16 @@ void setTemperature();
 void setTime();
 void setLighOnOff();
 bool isLightOn();
-void setServiceMode();
+bool setServiceMode();
 bool setOff();
-
+bool setHeaterOnOff();
+float getWaterTemperature();
+void setPumpOn();;
 
 
 void setup()
 {
 // Add your initialization code here
-	//pinMode(relais1,OUTPUT);
 	pinMode(RELAIS2,OUTPUT);
 	pinMode(RELAIS3,OUTPUT);
 	pinMode(RELAIS4,OUTPUT);
@@ -78,14 +82,11 @@ void setup()
 	rtc.begin();
 	sensors.begin();
 	sensors.setResolution(TEMP_RESOLUTION);
-
-	void setOff();
-
 	Serial.begin(9600);
-
 
 	setAirTemp();
 	setDisplayToggleValues();
+
 	/*rtc.setDate(30,04,2017);
 	rtc.setDOW(7);
 	rtc.setTime(19,47,50);*/
@@ -99,8 +100,12 @@ void loop()
 	setTemperature();
 	if(!setOff())
 	{
-		setLighOnOff();
-		setServiceMode();
+		if(!setServiceMode())
+		{
+			setLighOnOff();
+			setHeaterOnOff();
+			setPumpOn();
+		}
 	}
 }
 
@@ -124,14 +129,7 @@ bool isSwitchTemperatureDisplay()
 void setTemperature()
 {
 
-	  sensors.requestTemperatures();
-	  float airtemp = rtc.getTemp();
-	  Serial.print("air temp is: ");
-	  Serial.print(airtemp);
-	  Serial.print("     Temperature is: ");
-	  float celsius=sensors.getTempCByIndex(0);
-	  Serial.println(celsius);
-
+	  float celsius = getWaterTemperature();
 	  if(!waterTempDisplayActive && isSwitchTemperatureDisplay())
 	  {
 		  setDisplayToggleValues();
@@ -147,6 +145,18 @@ void setTemperature()
 		  waterTempDisplayActive = false;
 		  setAirTemp();
 	  }
+}
+
+float getWaterTemperature()
+{
+	sensors.requestTemperatures();
+	float airtemp = rtc.getTemp();
+	Serial.print("air temp is: ");
+	Serial.print(airtemp);
+	Serial.print("     Temperature is: ");
+	float celsius=sensors.getTempCByIndex(0);
+	Serial.println(celsius);
+	return celsius;
 }
 
 
@@ -359,14 +369,16 @@ bool isWeekend()
 }
 
 
-void setServiceMode()
+bool setServiceMode()
 {
 	int val = digitalRead(SERVICEBUTTON);
+	bool retVal=false;
 	if(val==HIGH)
 	{
 		digitalWrite(RELAIS2,LOW);  // Light ON
 		digitalWrite(RELAIS3,HIGH); //Pump out
 		digitalWrite( RELAIS4,HIGH); // Heater out
+		retVal=true;
 	}
 	else
 	{
@@ -374,7 +386,7 @@ void setServiceMode()
 		digitalWrite(RELAIS3,LOW); //Pump ON
 		digitalWrite( RELAIS4,LOW); // Heater ON
 	}
-
+	return retVal;
 }
 
 bool setOff()
@@ -395,6 +407,30 @@ bool setOff()
 		digitalWrite( RELAIS4,LOW); // Heater out
 	}
 	return retVal;
+}
+
+bool setHeaterOnOff()
+{
+	bool retVal=true;
+	float celsius = getWaterTemperature();
+	if(celsius > WATERTEMP_HEATEROFF)
+	{
+		digitalWrite(RELAIS4,HIGH);
+	}
+	else if(celsius <= WATERTEMP_HEATERON)
+	{
+		digitalWrite(RELAIS4,LOW);
+	}
+	else
+	{
+		digitalWrite(RELAIS4,LOW);
+	}
+	return retVal;
+}
+
+void setPumpOn()
+{
+	digitalWrite(RELAIS3,LOW);
 }
 
 
