@@ -27,12 +27,15 @@ DS3231  rtc(SDA, SCL);
 #define TEMP_RESOLUTION      12
 
 #define TIMELIGHTON_OVERWEEK   "07:30:00";
-#define TIMELIGHTOFF_OVERWEEK  "22:00:00";
-#define TIMELIGHTON_WEEKEND    "19:35:40";
+#define TIMELIGHTOFF_OVERWEEK  "20:22:03";
+#define TIMELIGHTON_WEEKEND    "09:35:40";
 #define TIMELIGHTOFF_WEEKEND   "19:35:50";
 
 #define WATERTEMP_HEATEROFF    25
 #define WATERTEMP_HEATERON     20
+
+#define ACTIVE          HIGH
+#define INACTIVE        LOW
 
 
 const char* stringBadTempValue = "Temperaturfehler";
@@ -66,7 +69,7 @@ bool setServiceMode();
 bool setOff();
 bool setHeaterOnOff();
 float getWaterTemperature();
-void setPumpOn();;
+void setPumpOn();
 
 
 void setup()
@@ -87,6 +90,8 @@ void setup()
 	setAirTemp();
 	setDisplayToggleValues();
 
+	digitalWrite(SERVICEBUTTON,LOW);
+	digitalWrite(ONOFFBUTTON,LOW);
 	/*rtc.setDate(30,04,2017);
 	rtc.setDOW(7);
 	rtc.setTime(19,47,50);*/
@@ -102,10 +107,10 @@ void loop()
 	{
 		if(!setServiceMode())
 		{
-			setLighOnOff();
 			setHeaterOnOff();
 			setPumpOn();
 		}
+		setLighOnOff();
 	}
 }
 
@@ -150,9 +155,9 @@ void setTemperature()
 float getWaterTemperature()
 {
 	sensors.requestTemperatures();
-	float airtemp = rtc.getTemp();
-	Serial.print("air temp is: ");
-	Serial.print(airtemp);
+//	float airtemp = rtc.getTemp();
+//	Serial.print("air temp is: ");
+//	Serial.print(airtemp);
 	Serial.print("     Temperature is: ");
 	float celsius=sensors.getTempCByIndex(0);
 	Serial.println(celsius);
@@ -166,9 +171,9 @@ void setTime()
 	lcd.print(rtc.getDOWStr(FORMAT_SHORT));
 	lcd.setCursor(8, 1);
 	lcd.print(rtc.getTimeStr());
-	Serial.print("Time:   ");
-	Serial.print(rtc.getTimeStr());
-	Serial.print("\n");
+//	Serial.print("Time:   ");
+//	Serial.print(rtc.getTimeStr());
+//	Serial.print("\n");
 }
 
 void setLighOnOff()
@@ -176,12 +181,12 @@ void setLighOnOff()
 	if(isLightOn())
 	{
 		Serial.print("Light On\n");
-		digitalWrite(RELAIS2,LOW);
+		digitalWrite(RELAIS2,ACTIVE);
 	}
 	else
 	{
 		Serial.print("Light off\n");
-		digitalWrite(RELAIS2,HIGH);
+		digitalWrite(RELAIS2,INACTIVE);
 	}
 }
 
@@ -199,8 +204,8 @@ bool isLightOn()
 	{
 		timeLightOn = (char*)TIMELIGHTON_WEEKEND;
 		timeLightOff = (char*)TIMELIGHTOFF_WEEKEND;
-		Serial.print("TimelineOff    ");
-		Serial.println(timeLightOff);
+//		Serial.print("TimelineOff    ");
+	//	Serial.println(timeLightOff);
 
 	}
 	else
@@ -219,8 +224,8 @@ bool isLightOn()
 	onhour = timeLightOn;
 	offhour = timeLightOff;
 
-	Serial.print("offhour   ");
-	Serial.println(offhour);
+//	Serial.print("offhour   ");
+//	Serial.println(offhour);
 
 	onmin = timeLightOn+3;
 	//onmin[1] = timeLightOn[4];
@@ -233,8 +238,8 @@ bool isLightOn()
 	onsec = timeLightOn+6;
 	offsec = timeLightOff+6;
 
-	Serial.print("offsec   ");
-	Serial.println(offsec);
+//	Serial.print("offsec   ");
+//	Serial.println(offsec);
 
 
 	uint8_t intOnHour = atoi(onhour);
@@ -244,7 +249,7 @@ bool isLightOn()
 	uint8_t intOnSecond = atoi(onsec);
 	uint8_t intOffSecond = atoi(offsec);
 
-	Serial.print("integer offhour   ");
+/*	Serial.print("integer offhour   ");
 	Serial.println(intOffHour);
 	Serial.print("integer offminute   ");
 	Serial.println(intOffMinute);
@@ -256,29 +261,29 @@ bool isLightOn()
 	Serial.println(intOnMinute);
 	Serial.print("integer onsecond   ");
 	Serial.println(intOnSecond);
-
+*/
 
 
 // 1) hour greater
 	if(hour > intOnHour)
 	{
-		Serial.println("actual hour greater than spec. hour");
+	//	Serial.println("actual hour greater than spec. hour");
 		if(hour < intOffHour)
 		{
-			Serial.println("Light on hour");
+		//	Serial.println("Light on hour");
 			return true;
 		}
 	}
 	if((hour > intOnHour) && (hour == intOffHour)  && (min < intOffMinute))
 	{
-		Serial.println("actual min lowe than intminOff");
+		//Serial.println("actual min lowe than intminOff");
 		return true;
 
 	}
 
 	if((hour > intOnHour) && (hour == intOffHour) &&  (min > intOnMinute) && (min == intOffMinute) && (sec < intOffSecond))
 	{
-		Serial.println("actual second lower than intminSecond");
+		//Serial.println("actual second lower than intminSecond");
 		return true;
 
 	}
@@ -286,25 +291,25 @@ bool isLightOn()
 // 2. min greater
 	if((hour == intOnHour) && (min > intOnMinute))
 	{
-		Serial.println("hour equal min greater");
+		//Serial.println("hour equal min greater");
 		if(min < intOffMinute)
 		{
-			Serial.println("Light on minute");
+			//Serial.println("Light on minute");
 			return true;
 		}
 	}
 
 	if((hour == intOnHour) && (min == intOffMinute)  && (sec > intOnSecond))
 	{
-		Serial.println("hour equal min equal sec greater ");
+		//Serial.println("hour equal min equal sec greater ");
 		if((sec < intOffSecond))
 		{
-			Serial.println("Light on second");
+			//Serial.println("Light on second");
 			return true;
 		}
 	}
 
-	Serial.println("Light is off");
+	//Serial.println("Light is off");
 	return false;
 }
 
@@ -327,11 +332,11 @@ void setDisplayToggleValues()
 	}
 
 	timeToggleTempDisplay.sec = t;
-	Serial.print("toggleTime    ");
-	Serial.print(timeToggleTempDisplay.sec);
-	Serial.print("     ");
+	//Serial.print("toggleTime    ");
+	//Serial.print(timeToggleTempDisplay.sec);
+	//Serial.print("     ");
 //	Serial.print(t);
-	Serial.print("\n");
+//	Serial.print("\n");
 }
 
 
@@ -373,18 +378,21 @@ bool setServiceMode()
 {
 	int val = digitalRead(SERVICEBUTTON);
 	bool retVal=false;
-	if(val==HIGH)
+	if(val==ACTIVE)  //switch on
 	{
-		digitalWrite(RELAIS2,LOW);  // Light ON
-		digitalWrite(RELAIS3,HIGH); //Pump out
-		digitalWrite( RELAIS4,HIGH); // Heater out
+		if(isLightOn())
+		{
+			digitalWrite(RELAIS2,ACTIVE);  // Light ON
+		}
+		digitalWrite(RELAIS3,INACTIVE); //Pump out
+		digitalWrite( RELAIS4,INACTIVE); // Heater out
 		retVal=true;
 	}
 	else
 	{
-		digitalWrite(RELAIS2,LOW);  // Light ON
-		digitalWrite(RELAIS3,LOW); //Pump ON
-		digitalWrite( RELAIS4,LOW); // Heater ON
+		//digitalWrite(RELAIS2,ACTIVE);  // Light ON
+		//digitalWrite(RELAIS3,ACTIVE); //Pump ON
+		//digitalWrite( RELAIS4,ACTIVE); // Heater ON
 	}
 	return retVal;
 }
@@ -393,18 +401,18 @@ bool setOff()
 {
 	int val = digitalRead(ONOFFBUTTON);
 	bool retVal = false;
-	if(val==HIGH)
+	if(val==ACTIVE) // Switch on
 	{
-		digitalWrite(RELAIS2,HIGH);  // Light out
-		digitalWrite(RELAIS3,HIGH); //Pump out
-		digitalWrite( RELAIS4,HIGH); // Heater out
+		digitalWrite(RELAIS2,INACTIVE);  // Light off
+		digitalWrite(RELAIS3,INACTIVE); //Pump out
+		digitalWrite( RELAIS4,INACTIVE); // Heater out
 		retVal=true;
 	}
 	else
 	{
-		digitalWrite(RELAIS2,LOW);  // Light out
-		digitalWrite(RELAIS3,LOW); //Pump out
-		digitalWrite( RELAIS4,LOW); // Heater out
+		//digitalWrite(RELAIS2,ACTIVE);  // Light out
+		//digitalWrite(RELAIS3,ACTIVE); //Pump out
+		//digitalWrite( RELAIS4,ACTIVE); // Heater out
 	}
 	return retVal;
 }
@@ -415,22 +423,26 @@ bool setHeaterOnOff()
 	float celsius = getWaterTemperature();
 	if(celsius > WATERTEMP_HEATEROFF)
 	{
-		digitalWrite(RELAIS4,HIGH);
+		digitalWrite(RELAIS4,INACTIVE);
+		Serial.print("Heater off");
 	}
 	else if(celsius <= WATERTEMP_HEATERON)
 	{
-		digitalWrite(RELAIS4,LOW);
+		digitalWrite(RELAIS4,ACTIVE);
+		Serial.print("Heater on");
 	}
 	else
 	{
-		digitalWrite(RELAIS4,LOW);
+		digitalWrite(RELAIS4,ACTIVE);
+		Serial.print("Heater off");
 	}
 	return retVal;
 }
 
 void setPumpOn()
 {
-	digitalWrite(RELAIS3,LOW);
+	digitalWrite(RELAIS3,ACTIVE);
+	Serial.print("Pump is on");
 }
 
 
