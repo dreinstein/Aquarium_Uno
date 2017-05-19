@@ -2,6 +2,7 @@
 #include <LiquidCrystal.h> //LCD-Bibliothek laden
 #include <OneWire.h>
 #include <ds3231.h>
+
 #include "DallasTemperature\DallasTemperature.h"
 
 // Init the DS3231 using the hardware interface
@@ -26,16 +27,29 @@ DS3231  rtc(SDA, SCL);
 #define DISPLAYTOGGLETIME    20
 #define TEMP_RESOLUTION      12
 
-#define TIMELIGHTON_OVERWEEK   "07:30:00";
-#define TIMELIGHTOFF_OVERWEEK  "20:22:03";
+#define TIMELIGHTON_OVERWEEK   "23:58:10";
+#define TIMELIGHTOFF_OVERWEEK  "23:59:03";
 #define TIMELIGHTON_WEEKEND    "09:35:40";
 #define TIMELIGHTOFF_WEEKEND   "19:35:50";
 
 #define WATERTEMP_HEATEROFF    25
 #define WATERTEMP_HEATERON     20
 
+
+#define WATERTEMPERATUR_VALIDMAXVALUE  40
+#define WATERTEMPERATUR_VALIDMINVALUE  10
+
+
 #define ACTIVE          HIGH
 #define INACTIVE        LOW
+
+const long REFRESHVARIABLE_MAX  = 80000;
+
+#define DELAYTIME_BASE		  		200
+#define ACTUALISE_LIGHT_MULTiPLIER  20
+#define ACTUALISE_TIME_MULTIPLIER   400
+#define ACTUALISE_PUMP_MULTIPLIER   2000
+long refreshVariable=0;
 
 
 const char* stringBadTempValue = "Temperaturfehler";
@@ -46,6 +60,16 @@ const char* sunday = "Sun";
 
 bool waterTempDisplayActive = false;
 bool secOverflowFlag = false;
+
+long unixOnTime;
+long unixOffTime;
+
+enum LIGHSTATUS
+{
+	ON=0,
+	OFF,
+	NOCHANGE
+};
 
 
 OneWire  ds(TEMPSENSOR);
@@ -64,10 +88,10 @@ bool isSwitchTemperatureDisplay();
 void setTemperature();
 void setTime();
 void setLighOnOff();
-bool isLightOn();
+int isLightOn();
 bool setServiceMode();
 bool setOff();
-bool setHeaterOnOff();
+void setHeaterOnOff();
 float getWaterTemperature();
 void setPumpOn();
 
@@ -88,20 +112,22 @@ void setup()
 	Serial.begin(9600);
 
 	setAirTemp();
-	setDisplayToggleValues();
 
 	digitalWrite(SERVICEBUTTON,LOW);
 	digitalWrite(ONOFFBUTTON,LOW);
-	/*rtc.setDate(30,04,2017);
-	rtc.setDOW(7);
-	rtc.setTime(19,47,50);*/
+
+	rtc.setDate(25,04,2017);
+	rtc.setDOW(2);
+	rtc.setTime(23,57,50);
+	refreshVariable = 0;
+
 }
 
 // The loop function is called in an endless loop
 void loop()
 {
 	setTime();
-	delay(400);
+	delay(DELAYTIME_BASE);
 	setTemperature();
 	if(!setOff())
 	{
@@ -111,6 +137,12 @@ void loop()
 			setPumpOn();
 		}
 		setLighOnOff();
+	}
+	refreshVariable = refreshVariable+1;
+
+	if(refreshVariable > REFRESHVARIABLE_MAX)
+	{
+		refreshVariable = 0;
 	}
 }
 
@@ -137,16 +169,14 @@ void setTemperature()
 	  float celsius = getWaterTemperature();
 	  if(!waterTempDisplayActive && isSwitchTemperatureDisplay())
 	  {
-		  setDisplayToggleValues();
 		  waterTempDisplayActive = true;
-		  if((celsius > 10) && (celsius < 40))
+		  if((celsius > WATERTEMPERATUR_VALIDMINVALUE) && (celsius < WATERTEMPERATUR_VALIDMAXVALUE))
 		  {
 			  setWaterTemp(celsius);
 		  }
 	  }
 	  else if(waterTempDisplayActive && isSwitchTemperatureDisplay())
 	  {
-		  setDisplayToggleValues();
 		  waterTempDisplayActive = false;
 		  setAirTemp();
 	  }
@@ -178,25 +208,30 @@ void setTime()
 
 void setLighOnOff()
 {
-	if(isLightOn())
+	if(isLightOn() == LIGHSTATUS::ON)
 	{
 		Serial.print("Light On\n");
 		digitalWrite(RELAIS2,ACTIVE);
 	}
-	else
+	else if(isLightOn() == LIGHSTATUS::OFF)
 	{
 		Serial.print("Light off\n");
 		digitalWrite(RELAIS2,INACTIVE);
 	}
+
 }
 
 
 
-bool isLightOn()
+int isLightOn()
 {
-	uint8_t hour = rtc.getTime().hour;
-	uint8_t min  = rtc.getTime().min;
-	uint8_t sec = rtc.getTime().sec;
+
+	if(((refreshVariable*DELAYTIME_BASE) % ACTUALISE_LIGHT_MULTiPLIER) != 0 )
+	{
+		return LIGHSTATUS::NOCHANGE;
+	}
+
+
 	char* timeLightOn;
 	char* timeLightOff;
 
@@ -204,8 +239,8 @@ bool isLightOn()
 	{
 		timeLightOn = (char*)TIMELIGHTON_WEEKEND;
 		timeLightOff = (char*)TIMELIGHTOFF_WEEKEND;
-//		Serial.print("TimelineOff    ");
-	//	Serial.println(timeLightOff);
+		//		Serial.print("TimelineOff    ");
+			//	Serial.println(timeLightOff);
 
 	}
 	else
@@ -223,25 +258,10 @@ bool isLightOn()
 
 	onhour = timeLightOn;
 	offhour = timeLightOff;
-
-//	Serial.print("offhour   ");
-//	Serial.println(offhour);
-
 	onmin = timeLightOn+3;
-	//onmin[1] = timeLightOn[4];
 	offmin = timeLightOff+3;
-	//offmin[1] = timeLightOff[4];
-
-	Serial.print("offmin   ");
-	Serial.println(offmin);
-
 	onsec = timeLightOn+6;
 	offsec = timeLightOff+6;
-
-//	Serial.print("offsec   ");
-//	Serial.println(offsec);
-
-
 	uint8_t intOnHour = atoi(onhour);
 	uint8_t intOffHour = atoi(offhour);
 	uint8_t intOnMinute = atoi(onmin);
@@ -249,95 +269,76 @@ bool isLightOn()
 	uint8_t intOnSecond = atoi(onsec);
 	uint8_t intOffSecond = atoi(offsec);
 
-/*	Serial.print("integer offhour   ");
-	Serial.println(intOffHour);
-	Serial.print("integer offminute   ");
-	Serial.println(intOffMinute);
-	Serial.print("integer offsecond   ");
-	Serial.println(intOffSecond);
-	Serial.print("integer onhour   ");
-	Serial.println(intOnHour);
-	Serial.print("integer onminute   ");
-	Serial.println(intOnMinute);
-	Serial.print("integer onsecond   ");
-	Serial.println(intOnSecond);
-*/
+	Time lightOn;
+	lightOn.date = rtc.getTime().date;
+	lightOn.year = rtc.getTime().year;
+	lightOn.mon = rtc.getTime().mon;
+	lightOn.dow = rtc.getTime().dow;
+	lightOn.hour = intOnHour;
+	lightOn.min = intOnMinute;
+	lightOn.sec = intOnSecond;
 
+	unixOnTime = rtc.getUnixTime(lightOn);
+	Serial.print("unixOnTime:  ");
+	Serial.println(unixOnTime);
 
-// 1) hour greater
-	if(hour > intOnHour)
+	Time lightOff;
+	lightOff.date = rtc.getTime().date;
+	lightOff.year = rtc.getTime().year;
+	lightOff.mon = rtc.getTime().mon;
+	lightOff.dow = rtc.getTime().dow;
+	lightOff.hour = intOffHour;
+	lightOff.min = intOffMinute;
+	lightOff.sec = intOffSecond;
+
+	unixOffTime= rtc.getUnixTime(lightOff);
+	Serial.print("unixOffTime:  ");
+	Serial.println(unixOffTime);
+
+	long unixActualTime = rtc.getUnixTime(rtc.getTime());
+
+	// before 0:00, set offtime to next day
+	if((unixOnTime > unixOffTime ) && (unixActualTime > unixOnTime))
 	{
-	//	Serial.println("actual hour greater than spec. hour");
-		if(hour < intOffHour)
-		{
-		//	Serial.println("Light on hour");
-			return true;
-		}
-	}
-	if((hour > intOnHour) && (hour == intOffHour)  && (min < intOffMinute))
-	{
-		//Serial.println("actual min lowe than intminOff");
-		return true;
-
-	}
-
-	if((hour > intOnHour) && (hour == intOffHour) &&  (min > intOnMinute) && (min == intOffMinute) && (sec < intOffSecond))
-	{
-		//Serial.println("actual second lower than intminSecond");
-		return true;
-
-	}
-
-// 2. min greater
-	if((hour == intOnHour) && (min > intOnMinute))
-	{
-		//Serial.println("hour equal min greater");
-		if(min < intOffMinute)
-		{
-			//Serial.println("Light on minute");
-			return true;
-		}
+		lightOff.date = rtc.getTime().date+1;
+		lightOff.hour = intOffHour;
+		lightOff.min = intOffMinute;
+		lightOff.sec = intOffSecond;
+		unixOffTime = rtc.getUnixTime(lightOff);
+		Serial.print("unixoffTime + 1 Day   ");
+		Serial.println(unixOffTime);
 	}
 
-	if((hour == intOnHour) && (min == intOffMinute)  && (sec > intOnSecond))
+	// if offtime next day
+	//after 0:00, set ontime one day before
+	if((unixOnTime > unixOffTime) && (unixActualTime < unixOffTime))
 	{
-		//Serial.println("hour equal min equal sec greater ");
-		if((sec < intOffSecond))
-		{
-			//Serial.println("Light on second");
-			return true;
-		}
+		lightOn.date = rtc.getTime().date-1;
+		lightOn.hour = intOnHour;
+		lightOn.min = intOnMinute;
+		lightOn.sec = intOnSecond;
+		unixOnTime = rtc.getUnixTime(lightOn);
+		Serial.print("unixonTime - 1 Day   ");
+		Serial.println(unixOnTime);
 	}
 
-	//Serial.println("Light is off");
-	return false;
+
+
+	if(unixActualTime > unixOffTime)
+	{
+		return LIGHSTATUS::OFF;
+	}
+	else if(unixActualTime > unixOnTime)
+	{
+		return LIGHSTATUS::ON;
+	}
+
+	return LIGHSTATUS::OFF;
 }
 
 
 
 
-void setDisplayToggleValues()
-{
-	timeToggleTempDisplay = rtc.getTime();
-	uint8_t t  = timeToggleTempDisplay.sec + DISPLAYTOGGLETIME;
-	if(t >= MAXSEC)
-	{
-		secOverflowFlag = true;
-		t = t - MAXSEC;
-
-	}
-	else
-	{
-		secOverflowFlag = false;
-	}
-
-	timeToggleTempDisplay.sec = t;
-	//Serial.print("toggleTime    ");
-	//Serial.print(timeToggleTempDisplay.sec);
-	//Serial.print("     ");
-//	Serial.print(t);
-//	Serial.print("\n");
-}
 
 
 void setAirTemp()
@@ -417,32 +418,35 @@ bool setOff()
 	return retVal;
 }
 
-bool setHeaterOnOff()
+void setHeaterOnOff()
 {
-	bool retVal=true;
 	float celsius = getWaterTemperature();
+	if((celsius >WATERTEMPERATUR_VALIDMAXVALUE) || (celsius < WATERTEMPERATUR_VALIDMINVALUE))
+	{
+		return;
+	}
+
 	if(celsius > WATERTEMP_HEATEROFF)
 	{
 		digitalWrite(RELAIS4,INACTIVE);
-		Serial.print("Heater off");
+		//Serial.print("Heater offn\n");
 	}
 	else if(celsius <= WATERTEMP_HEATERON)
 	{
 		digitalWrite(RELAIS4,ACTIVE);
-		Serial.print("Heater on");
+		//Serial.print("Heater on\n");
 	}
 	else
 	{
 		digitalWrite(RELAIS4,ACTIVE);
-		Serial.print("Heater off");
+		//Serial.print("Heater on (else)\n");
 	}
-	return retVal;
 }
 
 void setPumpOn()
 {
 	digitalWrite(RELAIS3,ACTIVE);
-	Serial.print("Pump is on");
+//	Serial.print("Pump is on\n");
 }
 
 
