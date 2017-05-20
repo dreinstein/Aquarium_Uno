@@ -44,10 +44,11 @@ DS3231  rtc(SDA, SCL);
 #define INACTIVE        LOW
 
 const long REFRESHVARIABLE_MAX  = 80000;
+const long TOGGLE_TIME_DISPLAY  = 4000;
 
 #define DELAYTIME_BASE		  		200
 #define ACTUALISE_LIGHT_MULTiPLIER  20
-#define ACTUALISE_TIME_MULTIPLIER   400
+#define ACTUALISE_TIME_MULTIPLIER   800
 #define ACTUALISE_PUMP_MULTIPLIER   2000
 long refreshVariable=0;
 
@@ -58,17 +59,23 @@ const char* stringTempValueAir   = "Luft";
 const char* saturday = "Sat";
 const char* sunday = "Sun";
 
-bool waterTempDisplayActive = false;
 bool secOverflowFlag = false;
 
 long unixOnTime;
 long unixOffTime;
 
-enum LIGHSTATUS
+enum STATUS
 {
 	ON=0,
 	OFF,
 	NOCHANGE
+};
+
+enum TEMPERATUR_DISPLAY_STATUS
+{
+	WATERTEMP_ON=0,
+	WATERTEMP_OFF,
+	WATERTEMP_NOCHANGE
 };
 
 
@@ -81,10 +88,9 @@ Time timeToggleTempDisplay;
 
 // functionDeclaration
 bool isWeekend();
-void setDisplayToggleValues();
 void setAirTemp();
 void setWaterTemp(float temp);
-bool isSwitchTemperatureDisplay();
+int isSwitchTemperatureDisplay();
 void setTemperature();
 void setTime();
 void setLighOnOff();
@@ -146,38 +152,44 @@ void loop()
 	}
 }
 
-bool isSwitchTemperatureDisplay()
+int isSwitchTemperatureDisplay()
 {
-	Time actTime = rtc.getTime();
+	static int retValue = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
 
-	if(secOverflowFlag && actTime.sec > DISPLAYTOGGLETIME)
+	if(((refreshVariable*DELAYTIME_BASE) % TOGGLE_TIME_DISPLAY) == 0 )
 	{
-		return false;
-	}
+		if(retValue==TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF)
+		{
+			retValue = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_ON;
 
-	if(actTime.sec >= timeToggleTempDisplay.sec)
-	{
-		return true;
+			return TEMPERATUR_DISPLAY_STATUS::WATERTEMP_ON;
+		}
+		else
+		{
+			retValue = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
+
+			return TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
+		}
 	}
-	return false;
+	return TEMPERATUR_DISPLAY_STATUS::WATERTEMP_NOCHANGE;
 }
 
 
 void setTemperature()
 {
-
-	  float celsius = getWaterTemperature();
-	  if(!waterTempDisplayActive && isSwitchTemperatureDisplay())
+	 int displayValue = isSwitchTemperatureDisplay();
+	  if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_ON)
 	  {
-		  waterTempDisplayActive = true;
+		  float celsius = getWaterTemperature();
 		  if((celsius > WATERTEMPERATUR_VALIDMINVALUE) && (celsius < WATERTEMPERATUR_VALIDMAXVALUE))
 		  {
+			  Serial.println("Temperatur Status on");
 			  setWaterTemp(celsius);
 		  }
 	  }
-	  else if(waterTempDisplayActive && isSwitchTemperatureDisplay())
+	  else if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF)
 	  {
-		  waterTempDisplayActive = false;
+		  Serial.println("Temperatur Status off");
 		  setAirTemp();
 	  }
 }
@@ -208,12 +220,12 @@ void setTime()
 
 void setLighOnOff()
 {
-	if(isLightOn() == LIGHSTATUS::ON)
+	if(isLightOn() == STATUS::ON)
 	{
 		Serial.print("Light On\n");
 		digitalWrite(RELAIS2,ACTIVE);
 	}
-	else if(isLightOn() == LIGHSTATUS::OFF)
+	else if(isLightOn() == STATUS::OFF)
 	{
 		Serial.print("Light off\n");
 		digitalWrite(RELAIS2,INACTIVE);
@@ -228,7 +240,7 @@ int isLightOn()
 
 	if(((refreshVariable*DELAYTIME_BASE) % ACTUALISE_LIGHT_MULTiPLIER) != 0 )
 	{
-		return LIGHSTATUS::NOCHANGE;
+		return STATUS::NOCHANGE;
 	}
 
 
@@ -326,14 +338,14 @@ int isLightOn()
 
 	if(unixActualTime > unixOffTime)
 	{
-		return LIGHSTATUS::OFF;
+		return STATUS::OFF;
 	}
 	else if(unixActualTime > unixOnTime)
 	{
-		return LIGHSTATUS::ON;
+		return STATUS::ON;
 	}
 
-	return LIGHSTATUS::OFF;
+	return STATUS::OFF;
 }
 
 

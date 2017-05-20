@@ -2,7 +2,7 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2017-05-20 01:38:51
+//This file has been generated on 2017-05-20 02:23:45
 
 #include "Arduino.h"
 #include "Arduino.h"
@@ -12,7 +12,7 @@
 #include "DallasTemperature\DallasTemperature.h"
 void setup() ;
 void loop() ;
-bool isSwitchTemperatureDisplay() ;
+int isSwitchTemperatureDisplay() ;
 void setTemperature() ;
 float getWaterTemperature() ;
 void setTime() ;
