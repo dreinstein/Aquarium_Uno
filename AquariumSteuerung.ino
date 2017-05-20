@@ -11,7 +11,8 @@ DS3231  rtc(SDA, SCL);
 
 OneWire  ds(TEMPSENSOR);
 DallasTemperature sensors(&ds);
-LiquidCrystal lcd(12, 13, 5, 4, 3, 2);
+
+LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D0, LCD_D1, LCD_D2, LCD_D3);
 
 // functionDeclaration
 bool isWeekend();
@@ -82,7 +83,7 @@ int isSwitchTemperatureDisplay()
 {
 	static int retValue = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
 
-	if(!((refreshVariable*DELAYTIME_BASE) % TOGGLE_TIME_DISPLAY) )
+	if(TO_ACTUALISE(refreshVariable,TOGGLE_TIME_DISPLAY))
 	{
 		if(retValue==TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF)
 		{
@@ -184,15 +185,13 @@ void setLighOnOff()
 }
 
 
-
 int isLightOn()
 {
 
 	long unixOnTime = 0;
 	long unixOffTime = 0;
 
-
-	if(((refreshVariable*DELAYTIME_BASE) % ACTUALISE_LIGHT_MULTiPLIER))
+	if(TO_ACTUALISE(refreshVariable,ACTUALISE_LIGHT_MULTiPLIER))
 	{
 		return LIGHT_STATUS::LIGHT_NOCHANGE;
 	}
