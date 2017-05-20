@@ -1,90 +1,17 @@
+
+#include "Definitions.h"
 #include "Arduino.h"
 #include <LiquidCrystal.h> //LCD-Bibliothek laden
 #include <OneWire.h>
 #include <ds3231.h>
-
 #include "DallasTemperature\DallasTemperature.h"
 
 // Init the DS3231 using the hardware interface
 DS3231  rtc(SDA, SCL);
 
-//The setup function is called once at startup of the sketch
-
-
-// IN/OUT
-#define RELAIS2       9     //LIGHT  //OUT
-#define RELAIS3       10     //PUMP  //OUT
-#define RELAIS4       11     //HEATER //OUT
-#define TEMPSENSOR    8	    //TempSensor  //IN
-#define SERVICEBUTTON 7     //ServiceButton  //IN
-#define ONOFFBUTTON   6    //ONOFFBUTTON     //IN
-
-
-#define CURSERPOSTEMPSTRING  0
-#define CURSERPOSTEMPVALUE   8
-#define CURSERPOSCSTRING     14
-#define MAXSEC				 59
-#define DISPLAYTOGGLETIME    20
-#define TEMP_RESOLUTION      12
-
-#define TIMELIGHTON_OVERWEEK   "23:58:10";
-#define TIMELIGHTOFF_OVERWEEK  "23:59:03";
-#define TIMELIGHTON_WEEKEND    "09:35:40";
-#define TIMELIGHTOFF_WEEKEND   "19:35:50";
-
-#define WATERTEMP_HEATEROFF    25
-#define WATERTEMP_HEATERON     20
-
-
-#define WATERTEMPERATUR_VALIDMAXVALUE  40
-#define WATERTEMPERATUR_VALIDMINVALUE  10
-
-
-#define ACTIVE          HIGH
-#define INACTIVE        LOW
-
-const long REFRESHVARIABLE_MAX  = 80000;
-const long TOGGLE_TIME_DISPLAY  = 4000;
-
-#define DELAYTIME_BASE		  		200
-#define ACTUALISE_LIGHT_MULTiPLIER  20
-#define ACTUALISE_TIME_MULTIPLIER   800
-#define ACTUALISE_PUMP_MULTIPLIER   2000
-long refreshVariable=0;
-
-
-const char* stringBadTempValue = "Temperaturfehler";
-const char* stringTempValueWater = "Wasser:  ";
-const char* stringTempValueAir   = "Luft";
-const char* saturday = "Sat";
-const char* sunday = "Sun";
-
-bool secOverflowFlag = false;
-
-long unixOnTime;
-long unixOffTime;
-
-enum STATUS
-{
-	ON=0,
-	OFF,
-	NOCHANGE
-};
-
-enum TEMPERATUR_DISPLAY_STATUS
-{
-	WATERTEMP_ON=0,
-	WATERTEMP_OFF,
-	WATERTEMP_NOCHANGE
-};
-
-
 OneWire  ds(TEMPSENSOR);
 DallasTemperature sensors(&ds);
 LiquidCrystal lcd(12, 13, 5, 4, 3, 2);
-
-Time timeToggleTempDisplay;
-
 
 // functionDeclaration
 bool isWeekend();
@@ -116,18 +43,15 @@ void setup()
 	sensors.begin();
 	sensors.setResolution(TEMP_RESOLUTION);
 	Serial.begin(9600);
-
 	setAirTemp();
-
 	digitalWrite(SERVICEBUTTON,LOW);
 	digitalWrite(ONOFFBUTTON,LOW);
-
 	rtc.setDate(25,04,2017);
 	rtc.setDOW(2);
 	rtc.setTime(23,57,50);
 	refreshVariable = 0;
-
 }
+
 
 // The loop function is called in an endless loop
 void loop()
@@ -152,11 +76,13 @@ void loop()
 	}
 }
 
+
+
 int isSwitchTemperatureDisplay()
 {
 	static int retValue = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
 
-	if(((refreshVariable*DELAYTIME_BASE) % TOGGLE_TIME_DISPLAY) == 0 )
+	if(!((refreshVariable*DELAYTIME_BASE) % TOGGLE_TIME_DISPLAY) )
 	{
 		if(retValue==TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF)
 		{
@@ -207,6 +133,30 @@ float getWaterTemperature()
 }
 
 
+void setAirTemp()
+{
+	lcd.setCursor(CURSERPOSTEMPSTRING,0);
+	lcd.clear();
+	lcd.print(stringTempValueAir);
+	lcd.setCursor(CURSERPOSTEMPVALUE,0);
+	lcd.print(rtc.getTemp());
+	lcd.setCursor(CURSERPOSCSTRING, 0);
+	lcd.print("C");
+}
+
+
+void setWaterTemp(float temp)
+{
+	lcd.setCursor(CURSERPOSTEMPSTRING,0);
+	lcd.print(stringTempValueWater);
+	lcd.setCursor(CURSERPOSTEMPVALUE,0);
+	lcd.print(temp);
+	lcd.setCursor(CURSERPOSCSTRING, 0);
+	lcd.print("C");
+}
+
+
+
 void setTime()
 {
 	lcd.setCursor(0, 1);
@@ -220,12 +170,12 @@ void setTime()
 
 void setLighOnOff()
 {
-	if(isLightOn() == STATUS::ON)
+	if(isLightOn() == LIGHT_STATUS::LIGHT_ON)
 	{
 		Serial.print("Light On\n");
 		digitalWrite(RELAIS2,ACTIVE);
 	}
-	else if(isLightOn() == STATUS::OFF)
+	else if(isLightOn() == LIGHT_STATUS::LIGHT_OFF)
 	{
 		Serial.print("Light off\n");
 		digitalWrite(RELAIS2,INACTIVE);
@@ -238,9 +188,13 @@ void setLighOnOff()
 int isLightOn()
 {
 
-	if(((refreshVariable*DELAYTIME_BASE) % ACTUALISE_LIGHT_MULTiPLIER) != 0 )
+	long unixOnTime = 0;
+	long unixOffTime = 0;
+
+
+	if(((refreshVariable*DELAYTIME_BASE) % ACTUALISE_LIGHT_MULTiPLIER))
 	{
-		return STATUS::NOCHANGE;
+		return LIGHT_STATUS::LIGHT_NOCHANGE;
 	}
 
 
@@ -338,42 +292,17 @@ int isLightOn()
 
 	if(unixActualTime > unixOffTime)
 	{
-		return STATUS::OFF;
+		return LIGHT_STATUS::LIGHT_OFF;
 	}
 	else if(unixActualTime > unixOnTime)
 	{
-		return STATUS::ON;
+		return LIGHT_STATUS::LIGHT_ON;
 	}
 
-	return STATUS::OFF;
+	return LIGHT_STATUS::LIGHT_OFF;
 }
 
 
-
-
-
-
-void setAirTemp()
-{
-	lcd.setCursor(CURSERPOSTEMPSTRING,0);
-	lcd.clear();
-	lcd.print(stringTempValueAir);
-	lcd.setCursor(CURSERPOSTEMPVALUE,0);
-	lcd.print(rtc.getTemp());
-	lcd.setCursor(CURSERPOSCSTRING, 0);
-	lcd.print("C");
-}
-
-
-void setWaterTemp(float temp)
-{
-	lcd.setCursor(CURSERPOSTEMPSTRING,0);
-	lcd.print(stringTempValueWater);
-	lcd.setCursor(CURSERPOSTEMPVALUE,0);
-	lcd.print(temp);
-	lcd.setCursor(CURSERPOSCSTRING, 0);
-	lcd.print("C");
-}
 
 
 bool isWeekend()
