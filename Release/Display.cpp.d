@@ -1,4 +1,6 @@
-.ino.cpp.o: ../.ino.cpp \
+Display.cpp.o: ../Display.cpp ../Display.h \
+ ../DallasTemperature\DallasTemperature.h \
+ C:\Aquarium\AquariumSteuerung\OneWire-master/OneWire.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/WCharacter.h \
@@ -12,11 +14,15 @@
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\src/LiquidCrystal.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
- C:\Aquarium\AquariumSteuerung\OneWire-master/OneWire.h \
  C:\Aquarium\AquariumSteuerung\DS3231/ds3231.h \
  C:\Aquarium\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h \
- ../DallasTemperature\DallasTemperature.h ../Definitions.h ../Display.h \
- ../Light.h ../Heater.h ../Pump.h ../AquariumSteuerung.ino
+ ../Definitions.h
+
+../Display.h:
+
+../DallasTemperature\DallasTemperature.h:
+
+C:\Aquarium\AquariumSteuerung\OneWire-master/OneWire.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h:
 
@@ -44,22 +50,8 @@ C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\src/Liquid
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h:
 
-C:\Aquarium\AquariumSteuerung\OneWire-master/OneWire.h:
-
 C:\Aquarium\AquariumSteuerung\DS3231/ds3231.h:
 
 C:\Aquarium\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h:
 
-../DallasTemperature\DallasTemperature.h:
-
 ../Definitions.h:
-
-../Display.h:
-
-../Light.h:
-
-../Heater.h:
-
-../Pump.h:
-
-../AquariumSteuerung.ino:

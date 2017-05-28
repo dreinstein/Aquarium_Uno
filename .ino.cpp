@@ -2,30 +2,23 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2017-05-20 14:09:13
+//This file has been generated on 2017-05-28 15:15:08
 
 #include "Arduino.h"
-#include "Definitions.h"
 #include "Arduino.h"
 #include <LiquidCrystal.h>
 #include <OneWire.h>
 #include <ds3231.h>
 #include "DallasTemperature\DallasTemperature.h"
+#include "Definitions.h"
+#include "Display.h"
+#include "Light.h"
+#include "Heater.h"
+#include "Pump.h"
 void setup() ;
 void loop() ;
-int isSwitchTemperatureDisplay() ;
-void setTemperature() ;
-float getWaterTemperature() ;
-void setAirTemp() ;
-void setWaterTemp(float temp) ;
-void setTime() ;
-void setLighOnOff() ;
-int isLightOn() ;
-bool isWeekend() ;
 bool setServiceMode() ;
 bool setOff() ;
-void setHeaterOnOff() ;
-void setPumpOn() ;
 
 #include "AquariumSteuerung.ino"
 
