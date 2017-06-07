@@ -65,9 +65,9 @@ void Display::setTime()
 	lcd->print(rtc->getDOWStr(FORMAT_SHORT));
 	lcd->setCursor(8, 1);
 	lcd->print(rtc->getTimeStr());
-//	Serial.print("Time:   ");
-//	Serial.print(rtc.getTimeStr());
-//	Serial.print("\n");
+	Serial.print("Time:   ");
+	Serial.print(rtc->getTimeStr());
+	Serial.print("\n");
 }
 
 

@@ -92,6 +92,9 @@ void loop()
 	{
 		refresh = 0;
 	}
+	//lcd.setCursor(0,0);
+	//lcd.print("123456787899000");
+
 }
 
 
