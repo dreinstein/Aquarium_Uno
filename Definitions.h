@@ -4,9 +4,9 @@
 #include "Arduino.h"
 
 // ARDUINO IN/OUT
-#define RELAIS2       9     //LIGHT  //OUT
-#define RELAIS3       10     //PUMP  //OUT
-#define RELAIS4       11     //HEATER //OUT
+#define RELAIS2       9     //LIGHT  //OUT, gelbe LED
+#define RELAIS3       10     //PUMP  //OUT, rote LED
+#define RELAIS4       11     //HEATER //OUT, blaue LED
 #define TEMPSENSOR    8	    //TempSensor  //IN
 #define SERVICEBUTTON 7     //ServiceButton  //IN
 #define ONOFFBUTTON   6    //ONOFFBUTTON     //IN

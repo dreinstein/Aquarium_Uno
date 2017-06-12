@@ -30,6 +30,8 @@ void Display::setTemperature()
 	if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_ON)
 	{
 		float celsius = getWaterTemperature();
+		Serial.print("Temperatur:  ");
+		Serial.println(celsius);
 		if((celsius > WATERTEMPERATUR_VALIDMINVALUE) && (celsius < WATERTEMPERATUR_VALIDMAXVALUE))
 		{
 			Serial.println("Temperatur Status on");

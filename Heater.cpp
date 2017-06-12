@@ -22,6 +22,7 @@ void Heater::setHeaterOnOff(float temperature)
 {
 	if((temperature >WATERTEMPERATUR_VALIDMAXVALUE) || (temperature < WATERTEMPERATUR_VALIDMINVALUE))
 	{
+		setHeaterOn();
 		return;
 	}
 

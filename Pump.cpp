@@ -7,6 +7,7 @@
 
 #include "Pump.h"
 #include "Definitions.h"
+#include "arduino.h"
 
 Pump::Pump() {
 	// TODO Auto-generated constructor stub
@@ -20,10 +21,13 @@ Pump::~Pump() {
 void Pump::setPumpOn()
 {
 	digitalWrite(RELAIS3,ACTIVE);
+	Serial.println("Pump On");
+
 }
 
 void Pump::setPumpOff()
 {
 	digitalWrite(RELAIS3,INACTIVE);
+	Serial.println("Pump Off");
 }
 

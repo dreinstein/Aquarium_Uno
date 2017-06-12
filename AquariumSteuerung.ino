@@ -45,6 +45,8 @@ void setup()
 	pinMode(RELAIS4,OUTPUT);
 	pinMode(SERVICEBUTTON,INPUT);
 	pinMode(ONOFFBUTTON,INPUT);
+	pinMode(TEMPSENSOR,INPUT);
+
 
 	lcd.begin(16, 2);
 	rtc.begin();
@@ -56,9 +58,9 @@ void setup()
 	// for Test
 	digitalWrite(SERVICEBUTTON,LOW);
 	digitalWrite(ONOFFBUTTON,LOW);
-	rtc.setDate(25,04,2017);
-	rtc.setDOW(2);
-	rtc.setTime(23,57,50);
+	//rtc.setDate(12,06,2017);
+	//rtc.setDOW(1);
+	//rtc.setTime(20,8,0);
 
 }
 
@@ -67,6 +69,7 @@ void setup()
 void loop()
 {
 	display->setTime();
+//	display->setTemperature();
 	delay(DELAYTIME_BASE);
 	if(TO_ACTUALISE(refresh,TOGGLE_TIME_DISPLAY))
 	{
