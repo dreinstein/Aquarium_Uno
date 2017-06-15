@@ -26,27 +26,27 @@ Display::~Display()
 
 void Display::setTemperature()
 {
-	TEMPERATUR_DISPLAY_STATUS displayValue = isSwitchTemperatureDisplay();
-	if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_ON)
-	{
+//	TEMPERATUR_DISPLAY_STATUS displayValue = isSwitchTemperatureDisplay();
+//	if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_ON)
+//	{
 		float celsius = getWaterTemperature();
-		Serial.print("Temperatur:  ");
-		Serial.println(celsius);
+		//Serial.print("Temperatur:  ");
+		//Serial.println(celsius);
 		if((celsius > WATERTEMPERATUR_VALIDMINVALUE) && (celsius < WATERTEMPERATUR_VALIDMAXVALUE))
 		{
-			Serial.println("Temperatur Status on");
+			//Serial.println("Temperatur Status on");
 			setWaterTemp(celsius);
 		}
 		else
 		{
-			Serial.println("read temperature error");
+			//Serial.println("read temperature error");
 		}
-	}
-	else if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF)
+	//}
+/*	else if(displayValue == TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF)
 	{
 		Serial.println("Temperatur Status off");
 		setAirTemp();
-	}
+	}*/
 }
 
 
@@ -67,9 +67,9 @@ void Display::setTime()
 	lcd->print(rtc->getDOWStr(FORMAT_SHORT));
 	lcd->setCursor(8, 1);
 	lcd->print(rtc->getTimeStr());
-	Serial.print("Time:   ");
-	Serial.print(rtc->getTimeStr());
-	Serial.print("\n");
+//	Serial.print("Time:   ");
+//	Serial.print(rtc->getTimeStr());
+//	Serial.print("\n");
 }
 
 
@@ -83,7 +83,7 @@ TEMPERATUR_DISPLAY_STATUS Display::isSwitchTemperatureDisplay()
 	}
 	else
 	{
-		Serial.println("switch to AirTemp");
+	//	Serial.println("switch to AirTemp");
 		displayStatus = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
 		return displayStatus;
 	}
@@ -95,9 +95,9 @@ TEMPERATUR_DISPLAY_STATUS Display::isSwitchTemperatureDisplay()
 float Display::getWaterTemperature()
 {
 	tempSensors->requestTemperatures();
-	Serial.print("     Temperature is: ");
+	//Serial.print("     Temperature is: ");
 	float celsius=tempSensors->getTempCByIndex(0);
-	Serial.println(celsius);
+	//Serial.println(celsius);
 	return celsius;
 }
 

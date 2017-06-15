@@ -9,9 +9,7 @@
 #define HEATER_H_
 
 
-#define WATERTEMP_HEATEROFF    40
-#define WATERTEMP_HEATERON     20
-
+#define WATERTEMP_HEATEROFF    26
 
 
 

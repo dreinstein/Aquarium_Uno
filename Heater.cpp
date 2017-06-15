@@ -20,19 +20,9 @@ Heater::~Heater() {
 
 void Heater::setHeaterOnOff(float temperature)
 {
-	if((temperature >WATERTEMPERATUR_VALIDMAXVALUE) || (temperature < WATERTEMPERATUR_VALIDMINVALUE))
-	{
-		setHeaterOn();
-		return;
-	}
-
 	if(temperature > WATERTEMP_HEATEROFF)
 	{
 		setHeaterOff();
-	}
-	else if(temperature <= WATERTEMP_HEATERON)
-	{
-		setHeaterOn();
 	}
 	else
 	{
@@ -42,11 +32,13 @@ void Heater::setHeaterOnOff(float temperature)
 
 void Heater::setHeaterOn()
 {
+	Serial.println("Heater On");
 	digitalWrite(RELAIS4,ACTIVE);
 }
 
 void Heater::setHeaterOff()
 {
+	Serial.println("Heater Off");
 	digitalWrite(RELAIS4,INACTIVE);
 }
 

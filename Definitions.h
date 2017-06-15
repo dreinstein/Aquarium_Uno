@@ -4,9 +4,9 @@
 #include "Arduino.h"
 
 // ARDUINO IN/OUT
-#define RELAIS2       9     //LIGHT  //OUT, gelbe LED
-#define RELAIS3       10     //PUMP  //OUT, rote LED
-#define RELAIS4       11     //HEATER //OUT, blaue LED
+#define RELAIS2       9     //LIGHT  //OUT, gelb LED, graues Kabel
+#define RELAIS3       10     //PUMP  //OUT, rote LED , orange Kabel
+#define RELAIS4       11     //HEATER //OUT, blau LED. yellow Kabel,
 #define TEMPSENSOR    8	    //TempSensor  //IN
 #define SERVICEBUTTON 7     //ServiceButton  //IN
 #define ONOFFBUTTON   6    //ONOFFBUTTON     //IN
@@ -18,6 +18,19 @@
 #define LCD_D3		  2
 // SDA PinA4
 // SLC PinA5
+
+
+// Belegung serieller Anschluss
+// Pin1  5V rot
+// pin5  gnd sw
+// pin6  light grau
+// pin7 pump orange
+// pin8 heater yellow
+
+
+// Relais1 light
+// Relais2 pump
+// Relais3 heater
 
 
 // LCD positions
@@ -37,7 +50,7 @@
 
 // value for actualising display  and light calculation 
 #define REFRESHVARIABLE_MAX   80000
-#define TOGGLE_TIME_DISPLAY   4000
+#define TOGGLE_TIME_DISPLAY   200
 #define DELAYTIME_BASE		  		200
 #define ACTUALISE_LIGHT_MULTiPLIER  20
 #define ACTUALISE_TIME_MULTIPLIER   800

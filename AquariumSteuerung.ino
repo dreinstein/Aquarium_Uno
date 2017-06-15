@@ -43,6 +43,8 @@ void setup()
 	pinMode(RELAIS2,OUTPUT);
 	pinMode(RELAIS3,OUTPUT);
 	pinMode(RELAIS4,OUTPUT);
+
+
 	pinMode(SERVICEBUTTON,INPUT);
 	pinMode(ONOFFBUTTON,INPUT);
 	pinMode(TEMPSENSOR,INPUT);
@@ -55,9 +57,6 @@ void setup()
 	Serial.begin(9600);
 	refresh = 0;
 
-	// for Test
-	digitalWrite(SERVICEBUTTON,LOW);
-	digitalWrite(ONOFFBUTTON,LOW);
 	//rtc.setDate(12,06,2017);
 	//rtc.setDOW(1);
 	//rtc.setTime(20,8,0);
@@ -73,20 +72,21 @@ void loop()
 	delay(DELAYTIME_BASE);
 	if(TO_ACTUALISE(refresh,TOGGLE_TIME_DISPLAY))
 	{
-		Serial.print("toggle Temperatur");
 		display->setTemperature();
 	}
+
 	if(!setOff())
 	{
 		if(!setServiceMode())
 		{
 			float celsius = display->getWaterTemperature();
 			heater->setHeaterOnOff(celsius);
-			pump->setPumpOn();
-		}
-		if(TO_ACTUALISE(refresh,ACTUALISE_LIGHT_MULTiPLIER))
-		{
-			light->setLighOnOff();
+
+			if(TO_ACTUALISE(refresh,ACTUALISE_LIGHT_MULTiPLIER))
+			{
+				light->setLighOnOff();
+				pump->setPumpOn();
+			}
 		}
 	}
 	refresh = refresh+1;
@@ -95,18 +95,17 @@ void loop()
 	{
 		refresh = 0;
 	}
-	//lcd.setCursor(0,0);
-	//lcd.print("123456787899000");
-
 }
 
 
 bool setServiceMode()
 {
 	bool retVal=false;
+
 	if(digitalRead(SERVICEBUTTON)==ACTIVE)  //switch on
 	{
-		light->setLighOnOff();
+		Serial.println("ServiceMode set");
+		light->setLightOn();
 		pump->setPumpOff();
 		heater->setHeaterOff();
 		retVal=true;
