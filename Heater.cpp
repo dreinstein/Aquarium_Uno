@@ -11,6 +11,7 @@
 
 Heater::Heater() {
 	// TODO Auto-generated constructor stub
+	setHeaterOn();
 
 }
 
@@ -20,25 +21,33 @@ Heater::~Heater() {
 
 void Heater::setHeaterOnOff(float temperature)
 {
-	if(temperature > WATERTEMP_HEATEROFF)
+	if(heaterStatus == HEATER_STATUS::HEATER_OFF)
 	{
-		setHeaterOff();
+		if(temperature < WATERTEMP_HEATERON)
+		{
+			setHeaterOn();
+		}
 	}
-	else
+	else if(heaterStatus == HEATER_STATUS::HEATER_ON)
 	{
-		setHeaterOn();
+		if(temperature >= WATERTEMP_HEATEROFF)
+		{
+			setHeaterOff();
+		}
 	}
 }
 
 void Heater::setHeaterOn()
 {
 	Serial.println("Heater On");
+	heaterStatus = HEATER_STATUS::HEATER_ON;
 	digitalWrite(RELAIS4,ACTIVE);
 }
 
 void Heater::setHeaterOff()
 {
 	Serial.println("Heater Off");
+	heaterStatus = HEATER_STATUS::HEATER_OFF;
 	digitalWrite(RELAIS4,INACTIVE);
 }
 

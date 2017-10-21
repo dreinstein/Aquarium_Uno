@@ -18,6 +18,7 @@ Light::Light(DS3231  *_rtc) {
 	// TODO Auto-generated constructor stub
 	rtc = _rtc;
 
+
 }
 
 Light::~Light() {

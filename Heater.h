@@ -8,9 +8,15 @@
 #ifndef HEATER_H_
 #define HEATER_H_
 
+#define WATERTEMP_HEATEROFF    25
+#define WATERTEMP_HEATERON     23
 
-#define WATERTEMP_HEATEROFF    26
-
+// stati for light
+enum class HEATER_STATUS
+{
+	HEATER_ON=0,
+	HEATER_OFF
+};
 
 
 class Heater {
@@ -20,6 +26,7 @@ public:
 	void setHeaterOnOff(float temperature);
 	void setHeaterOn();
 	void setHeaterOff();
+	HEATER_STATUS heaterStatus;
 };
 
 #endif /* HEATER_H_ */

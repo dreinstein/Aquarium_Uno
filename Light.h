@@ -43,6 +43,8 @@ private:
 	bool isWeekend();
 	DS3231  *rtc;
 
+
+
 	const char* saturday = "Sat";
 	const char*  sunday =  "Sun";
 };
