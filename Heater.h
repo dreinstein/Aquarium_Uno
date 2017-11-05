@@ -8,7 +8,7 @@
 #ifndef HEATER_H_
 #define HEATER_H_
 
-#define WATERTEMP_HEATEROFF    25
+#define WATERTEMP_HEATEROFF    26
 #define WATERTEMP_HEATERON     23
 
 // stati for light

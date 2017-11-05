@@ -59,7 +59,7 @@ void setup()
 
 	//rtc.setDate(12,06,2017);
 	//rtc.setDOW(1);
-	//rtc.setTime(20,8,0);
+	//rtc.setTime(15,17,30);
 
 }
 
