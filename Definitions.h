@@ -8,8 +8,8 @@
 #define RELAIS3       10     //PUMP  //OUT, rote LED , orange Kabel
 #define RELAIS4       11     //HEATER //OUT, blau LED. yellow Kabel,
 #define TEMPSENSOR    8	    //TempSensor  //IN
-#define SERVICEBUTTON 7     //ServiceButton  //IN
-#define ONOFFBUTTON   6    //ONOFFBUTTON     //IN
+#define SERVICEBUTTON 7     //ServiceButton  hight: Pump, TempSensor out//IN
+#define ONOFFBUTTON   6    //ONOFFBUTTON     hight: Pump, TempSensor, Light out //IN
 #define LCD_RS		  12
 #define LCD_ENABLE	  13
 #define LCD_D0		  5
@@ -20,7 +20,7 @@
 // SLC PinA5
 
 
-// Belegung serieller Anschluss
+// Belegung serieller Anschluss Relais
 // Pin1  5V rot
 // pin5  gnd sw
 // pin6  light grau

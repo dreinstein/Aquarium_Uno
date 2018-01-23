@@ -132,6 +132,8 @@ LIGHT_STATUS Light::isLightOn()
 
 
 	long unixActualTime = rtc->getUnixTime(rtc->getTime());
+	Serial.println(rtc->getTimeStr(FORMAT_LONG));
+
 
 
 	// before 0:00, set offtime to next day

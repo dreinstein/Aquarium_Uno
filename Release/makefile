@@ -90,7 +90,7 @@ C:/Aquarium/AquariumSteuerung/Release/arduino.ar: $(AR_OBJ)
 
 AquariumSteuerung.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"C:\EclipseArduino\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:/Aquarium/AquariumSteuerung/Release/AquariumSteuerung.elf"   $(LINK_OBJ) $(AR)   C:/Aquarium/AquariumSteuerung/Release/arduino.ar  "-LC:/Aquarium/AquariumSteuerung/Release" -lm
+	"C:\EclipseArduino\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:\Aquarium\AquariumSteuerung/Release/AquariumSteuerung.elf"   $(LINK_OBJ) $(AR)   C:/Aquarium/AquariumSteuerung/Release/arduino.ar  "-LC:\Aquarium\AquariumSteuerung/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 

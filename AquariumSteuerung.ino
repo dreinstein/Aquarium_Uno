@@ -34,6 +34,8 @@ void setup()
 {
 // Add your initialization code here
 
+	Serial.println("Setup\n");
+
 	display = new Display(&sensors,&lcd,&rtc);
 	light = new Light(&rtc);
 	heater = new Heater();
@@ -57,9 +59,11 @@ void setup()
 	Serial.begin(9600);
 	refresh = 0;
 
-	//rtc.setDate(12,06,2017);
-	//rtc.setDOW(1);
-	//rtc.setTime(15,17,30);
+	//rtc.setDate(14,01,2018);
+	//rtc.setDOW(7);
+	//rtc.setTime(19,49,00);
+
+	Serial.println("initialised");
 
 }
 

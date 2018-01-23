@@ -9,7 +9,7 @@
 #define HEATER_H_
 
 #define WATERTEMP_HEATEROFF    26
-#define WATERTEMP_HEATERON     23
+#define WATERTEMP_HEATERON     25
 
 // stati for light
 enum class HEATER_STATUS
