@@ -9,18 +9,10 @@ RM := del
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
--include libraries\LiquidCrystal\src/subdir.mk
 -include core\core/subdir.mk
 -include OneWire-master/subdir.mk
+-include LiquidCrystal/subdir.mk
 -include DallasTemperature/subdir.mk
--include DS3231\examples\chipKit\DS3231_UnixTime/subdir.mk
--include DS3231\examples\chipKit\DS3231_Temperature/subdir.mk
--include DS3231\examples\chipKit\DS3231_Serial_Hard/subdir.mk
--include DS3231\examples\chipKit\DS3231_Serial_Easy/subdir.mk
--include DS3231\examples\Arduino\DS3231_UnixTime/subdir.mk
--include DS3231\examples\Arduino\DS3231_Temperature/subdir.mk
--include DS3231\examples\Arduino\DS3231_Serial_Hard/subdir.mk
--include DS3231\examples\Arduino\DS3231_Serial_Easy/subdir.mk
 -include DS3231/subdir.mk
 -include .metadata\.plugins\org.eclipse.cdt.make.core/subdir.mk
 -include objects.mk

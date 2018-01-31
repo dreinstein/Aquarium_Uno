@@ -12,7 +12,7 @@ Display.cpp.o: ../Display.cpp ../Display.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/USBAPI.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h \
- C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\src/LiquidCrystal.h \
+ ../LiquidCrystal\LiquidCrystal.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
  C:\Aquarium\AquariumSteuerung\DS3231/ds3231.h \
  C:\Aquarium\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h \
@@ -46,7 +46,7 @@ C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cor
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h:
 
-C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\src/LiquidCrystal.h:
+../LiquidCrystal\LiquidCrystal.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h:
 

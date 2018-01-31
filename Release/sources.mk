@@ -38,16 +38,8 @@ SUBDIRS := \
 . \
 .metadata/.plugins/org.eclipse.cdt.make.core \
 DS3231 \
-DS3231/examples/Arduino/DS3231_Serial_Easy \
-DS3231/examples/Arduino/DS3231_Serial_Hard \
-DS3231/examples/Arduino/DS3231_Temperature \
-DS3231/examples/Arduino/DS3231_UnixTime \
-DS3231/examples/chipKit/DS3231_Serial_Easy \
-DS3231/examples/chipKit/DS3231_Serial_Hard \
-DS3231/examples/chipKit/DS3231_Temperature \
-DS3231/examples/chipKit/DS3231_UnixTime \
 DallasTemperature \
+LiquidCrystal \
 OneWire-master \
 core/core \
-libraries/LiquidCrystal/src \
 
