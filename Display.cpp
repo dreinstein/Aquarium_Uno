@@ -11,10 +11,12 @@
 
 
 
-Display::Display(DallasTemperature *_tempSensor, LiquidCrystal  *_lcd, DS3231  *_rtc)
+Display::Display(DallasTemperature *_tempSensor, LiquidCrystal_I2C  *_lcd, DS3231  *_rtc)
 {
 	tempSensors = _tempSensor;
 	lcd = _lcd;
+	lcd->init();
+	lcd->backlight();
 	rtc = _rtc;
 	displayStatus = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
 }

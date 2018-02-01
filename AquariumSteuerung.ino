@@ -5,6 +5,7 @@
 #include <OneWire.h>
 #include <ds3231.h>
 #include "DallasTemperature\DallasTemperature.h"
+#include "LiquidCrystal_I2C-1.1.2\LiquidCrystal_I2C.h"
 #include "Definitions.h"
 #include "Display.h"
 #include "Light.h"
@@ -14,13 +15,12 @@
 long refresh=0;
 
 
-// Init the DS3231 using the hardware interface
 DS3231  rtc(SDA, SCL);
 OneWire  ds(TEMPSENSOR);
 DallasTemperature sensors(&ds);
-LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D0, LCD_D1, LCD_D2, LCD_D3);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-// functionDeclaration
+
 bool setServiceMode();
 bool setOff();
 
@@ -35,7 +35,6 @@ void setup()
 // Add your initialization code here
 
 	Serial.println("Setup\n");
-
 	display = new Display(&sensors,&lcd,&rtc);
 	light = new Light(&rtc);
 	heater = new Heater();

@@ -16,6 +16,8 @@
 #define LCD_D1		  4
 #define LCD_D2		  3
 #define LCD_D3		  2
+
+
 // SDA PinA4
 // SLC PinA5
 
