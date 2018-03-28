@@ -4,8 +4,7 @@
 #include <LiquidCrystal.h> //LCD-Bibliothek laden
 #include <OneWire.h>
 #include <ds3231.h>
-#include "DallasTemperature\DallasTemperature.h"
-#include "LiquidCrystal_I2C-1.1.2\LiquidCrystal_I2C.h"
+#include <DallasTemperature.h>
 #include "Definitions.h"
 #include "Display.h"
 #include "Light.h"
@@ -15,12 +14,13 @@
 long refresh=0;
 
 
+// Init the DS3231 using the hardware interface
 DS3231  rtc(SDA, SCL);
 OneWire  ds(TEMPSENSOR);
 DallasTemperature sensors(&ds);
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal lcd(LCD_RS, LCD_ENABLE, LCD_D0, LCD_D1, LCD_D2, LCD_D3);
 
-
+// functionDeclaration
 bool setServiceMode();
 bool setOff();
 
@@ -35,6 +35,7 @@ void setup()
 // Add your initialization code here
 
 	Serial.println("Setup\n");
+
 	display = new Display(&sensors,&lcd,&rtc);
 	light = new Light(&rtc);
 	heater = new Heater();
@@ -58,9 +59,9 @@ void setup()
 	Serial.begin(9600);
 	refresh = 0;
 
-	//rtc.setDate(14,01,2018);
-	//rtc.setDOW(7);
-	//rtc.setTime(19,49,00);
+//	rtc.setDate(27,03,2018);
+//	rtc.setDOW(2);
+//	rtc.setTime(18,5,00);
 
 	Serial.println("initialised");
 
@@ -128,7 +129,3 @@ bool setOff()
 	}
 	return retVal;
 }
-
-
-
-

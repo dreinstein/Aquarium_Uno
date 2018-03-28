@@ -24,10 +24,15 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/DS3231}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/OneWire-master}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/NTPClient-3.1.0}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.2041198576" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -35,10 +40,15 @@
 								<option id="io.sloeber.compiler.c.sketch.option.incpath.1834261795" name="Include Paths (-I)" superClass="io.sloeber.compiler.c.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/NTPClient-3.1.0}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.484692547" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -46,10 +56,15 @@
 								<option id="io.sloeber.compiler.asm.sketch.option.incpath.1821915067" name="Include Paths (-I)" superClass="io.sloeber.compiler.asm.sketch.option.incpath" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/core/core}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/core/variant}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/NTPClient-3.1.0}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.1296843314" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
