@@ -1,4 +1,4 @@
-Light.cpp.o: ../Light.cpp ../Light.h \
+Light.cpp.o: ..\Light.cpp ..\Light.h \
  C:\AController\AquariumSteuerung\DS3231/ds3231.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
@@ -13,9 +13,9 @@ Light.cpp.o: ../Light.cpp ../Light.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h \
  C:\AController\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/HardwareSerial.h \
- ../Definitions.h
+ ..\Definitions.h
 
-../Light.h:
+..\Light.h:
 
 C:\AController\AquariumSteuerung\DS3231/ds3231.h:
 
@@ -45,4 +45,4 @@ C:\AController\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/HardwareSerial.h:
 
-../Definitions.h:
+..\Definitions.h:

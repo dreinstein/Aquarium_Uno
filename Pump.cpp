@@ -21,13 +21,13 @@ Pump::~Pump() {
 void Pump::setPumpOn()
 {
 	digitalWrite(RELAIS3,ACTIVE);
-	Serial.println("Pump On");
+//	Serial.println("Pump On");
 
 }
 
 void Pump::setPumpOff()
 {
 	digitalWrite(RELAIS3,INACTIVE);
-	Serial.println("Pump Off");
+//	Serial.println("Pump Off");
 }
 

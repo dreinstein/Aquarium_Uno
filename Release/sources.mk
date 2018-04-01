@@ -14,7 +14,6 @@ CXX_SRCS :=
 C++_SRCS := 
 PDE_SRCS := 
 CC_SRCS := 
-AR_SRCS := 
 C_SRCS := 
 C_UPPER_DEPS := 
 PDE_DEPS := 
@@ -35,8 +34,9 @@ CPP_DEPS :=
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
-. \
 .metadata/.plugins/org.eclipse.cdt.make.core \
+.metadata/.plugins/org.eclipse.cdt.managedbuilder.core \
+. \
 DS3231 \
 DS3231/examples/Arduino/DS3231_Serial_Easy \
 DS3231/examples/Arduino/DS3231_Serial_Hard \
@@ -54,8 +54,13 @@ OneWire-master \
 core/core \
 libraries/Ethernet/src \
 libraries/Ethernet/src/utility \
+libraries/HID/src \
+libraries/Keyboard/src \
 libraries/LiquidCrystal \
+libraries/LiquidCrystal_I2C-1.1.2 \
 libraries/SPI/src \
+libraries/WiFi/src \
+libraries/WiFi/src/utility \
 libraries/Wire/src \
 libraries/Wire/src/utility \
 

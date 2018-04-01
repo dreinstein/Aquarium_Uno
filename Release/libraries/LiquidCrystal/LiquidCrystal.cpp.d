@@ -1,6 +1,6 @@
-libraries/LiquidCrystal/LiquidCrystal.cpp.o: \
- C:/EclipseArduino/sloeber/arduinoPlugin/libraries/LiquidCrystal/1.0.4/LiquidCrystal.cpp \
- C:/EclipseArduino/sloeber/arduinoPlugin/libraries/LiquidCrystal/1.0.4/LiquidCrystal.h \
+libraries\LiquidCrystal\LiquidCrystal.cpp.o: \
+ C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\LiquidCrystal.cpp \
+ C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\LiquidCrystal.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/WString.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Printable.h \
@@ -14,7 +14,7 @@ libraries/LiquidCrystal/LiquidCrystal.cpp.o: \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h
 
-C:/EclipseArduino/sloeber/arduinoPlugin/libraries/LiquidCrystal/1.0.4/LiquidCrystal.h:
+C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4\LiquidCrystal.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h:
 

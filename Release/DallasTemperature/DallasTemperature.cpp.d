@@ -1,6 +1,6 @@
-DallasTemperature/DallasTemperature.cpp.o: \
- ../DallasTemperature/DallasTemperature.cpp \
- ../DallasTemperature/DallasTemperature.h \
+DallasTemperature\DallasTemperature.cpp.o: \
+ ..\DallasTemperature\DallasTemperature.cpp \
+ ..\DallasTemperature\DallasTemperature.h \
  C:\AController\AquariumSteuerung\OneWire-master/OneWire.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
@@ -14,7 +14,7 @@ DallasTemperature/DallasTemperature.cpp.o: \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h
 
-../DallasTemperature/DallasTemperature.h:
+..\DallasTemperature\DallasTemperature.h:
 
 C:\AController\AquariumSteuerung\OneWire-master/OneWire.h:
 

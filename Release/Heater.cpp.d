@@ -1,4 +1,4 @@
-Heater.cpp.o: ../Heater.cpp ../Heater.h \
+Heater.cpp.o: ..\Heater.cpp ..\Heater.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/WCharacter.h \
@@ -10,9 +10,9 @@ Heater.cpp.o: ../Heater.cpp ../Heater.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/USBAPI.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h \
- ../Definitions.h
+ ..\Definitions.h
 
-../Heater.h:
+..\Heater.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h:
 
@@ -36,4 +36,4 @@ C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cor
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h:
 
-../Definitions.h:
+..\Definitions.h:

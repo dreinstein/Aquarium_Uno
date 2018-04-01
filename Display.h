@@ -9,7 +9,8 @@
 #define DISPLAY_H_
 
 #include <DallasTemperature.h>
-#include <LiquidCrystal.h>
+//#include <LiquidCrystal.h>
+#include <LiquidCrystal_I2C.h>
 #include <ds3231.h>
 
 
@@ -26,7 +27,7 @@ enum class TEMPERATUR_DISPLAY_STATUS
 
 class Display {
 public:
-	Display (DallasTemperature *_tempSensor,LiquidCrystal *_lcd, DS3231  *_rtc );
+	Display (DallasTemperature *_tempSensor,LiquidCrystal_I2C *_lcd, DS3231  *_rtc );
 	virtual ~Display();
 	void setTemperature();
 	float getWaterTemperature();
@@ -39,7 +40,7 @@ private:
 
 	TEMPERATUR_DISPLAY_STATUS displayStatus;
 	DallasTemperature *tempSensors;
-	LiquidCrystal *lcd;
+	LiquidCrystal_I2C *lcd;
 	DS3231  *rtc;
 
 	// strings for lcd

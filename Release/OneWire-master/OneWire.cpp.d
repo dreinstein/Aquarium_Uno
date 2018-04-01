@@ -1,5 +1,5 @@
-OneWire-master/OneWire.cpp.o: ../OneWire-master/OneWire.cpp \
- ../OneWire-master/OneWire.h \
+OneWire-master\OneWire.cpp.o: ..\OneWire-master\OneWire.cpp \
+ ..\OneWire-master\OneWire.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/WCharacter.h \
@@ -12,7 +12,7 @@ OneWire-master/OneWire.cpp.o: ../OneWire-master/OneWire.cpp \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h
 
-../OneWire-master/OneWire.h:
+..\OneWire-master\OneWire.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h:
 

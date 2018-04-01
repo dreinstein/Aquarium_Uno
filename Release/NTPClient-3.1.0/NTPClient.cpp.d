@@ -1,5 +1,5 @@
-NTPClient-3.1.0/NTPClient.cpp.o: ../NTPClient-3.1.0/NTPClient.cpp \
- ../NTPClient-3.1.0/NTPClient.h \
+NTPClient-3.1.0\NTPClient.cpp.o: ..\NTPClient-3.1.0\NTPClient.cpp \
+ ..\NTPClient-3.1.0\NTPClient.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/binary.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/WCharacter.h \
@@ -15,7 +15,7 @@ NTPClient-3.1.0/NTPClient.cpp.o: ../NTPClient-3.1.0/NTPClient.cpp \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/IPAddress.h
 
-../NTPClient-3.1.0/NTPClient.h:
+..\NTPClient-3.1.0\NTPClient.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h:
 

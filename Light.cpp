@@ -44,13 +44,13 @@ void Light::setLighOnOff()
 
 void Light::setLightOn()
 {
-	Serial.print("Light On\n");
+//	Serial.print("Light On\n");
 	digitalWrite(RELAIS2,ACTIVE);
 }
 
 void Light::setLightOff()
 {
-	Serial.print("Light Off\n");
+//	Serial.print("Light Off\n");
 	digitalWrite(RELAIS2,INACTIVE);
 }
 
@@ -132,7 +132,7 @@ LIGHT_STATUS Light::isLightOn()
 
 
 	long unixActualTime = rtc->getUnixTime(rtc->getTime());
-	Serial.println(rtc->getTimeStr(FORMAT_LONG));
+	//Serial.println(rtc->getTimeStr(FORMAT_LONG));
 
 
 

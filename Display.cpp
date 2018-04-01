@@ -11,7 +11,7 @@
 
 
 
-Display::Display(DallasTemperature *_tempSensor, LiquidCrystal  *_lcd, DS3231  *_rtc)
+Display::Display(DallasTemperature *_tempSensor, LiquidCrystal_I2C  *_lcd, DS3231  *_rtc)
 {
 	tempSensors = _tempSensor;
 	lcd = _lcd;
@@ -64,6 +64,7 @@ void Display::setWaterTemp(float temp)
 void Display::setTime()
 {
 	lcd->setCursor(0, 1);
+//	Serial.print(rtc->getDateStr());
 	lcd->print(rtc->getDOWStr(FORMAT_SHORT));
 	lcd->setCursor(8, 1);
 	lcd->print(rtc->getTimeStr());

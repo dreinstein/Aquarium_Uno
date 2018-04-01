@@ -33,6 +33,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/NTPClient-3.1.0}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/WiFi}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Keyboard}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Keyboard/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/HID}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/HID/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal_I2C-1.1.2}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.2041198576" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -49,6 +56,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/NTPClient-3.1.0}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/WiFi}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Keyboard}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Keyboard/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/HID}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/HID/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal_I2C-1.1.2}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.484692547" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -65,6 +79,13 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/NTPClient-3.1.0}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/WiFi}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Keyboard}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/Keyboard/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/HID}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/HID/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung/libraries/LiquidCrystal_I2C-1.1.2}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.1296843314" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>

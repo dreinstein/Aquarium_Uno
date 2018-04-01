@@ -1,4 +1,4 @@
-Display.cpp.o: ../Display.cpp ../Display.h \
+Display.cpp.o: ..\Display.cpp ..\Display.h \
  C:\AController\AquariumSteuerung\DallasTemperature/DallasTemperature.h \
  C:\AController\AquariumSteuerung\OneWire-master/OneWire.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
@@ -12,13 +12,15 @@ Display.cpp.o: ../Display.cpp ../Display.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/USBAPI.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Arduino.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h \
- C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4/LiquidCrystal.h \
+ C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal_I2C-1.1.2\1.1.2/LiquidCrystal_I2C.h \
  C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h \
+ C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\libraries\Wire\src/Wire.h \
+ C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h \
  C:\AController\AquariumSteuerung\DS3231/ds3231.h \
  C:\AController\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h \
- ../Definitions.h
+ ..\Definitions.h
 
-../Display.h:
+..\Display.h:
 
 C:\AController\AquariumSteuerung\DallasTemperature/DallasTemperature.h:
 
@@ -46,12 +48,16 @@ C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cor
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\variants\standard/pins_arduino.h:
 
-C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal\1.0.4/LiquidCrystal.h:
+C:\EclipseArduino\sloeber\arduinoPlugin\libraries\LiquidCrystal_I2C-1.1.2\1.1.2/LiquidCrystal_I2C.h:
 
 C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Print.h:
+
+C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\libraries\Wire\src/Wire.h:
+
+C:\EclipseArduino\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.18\cores\arduino/Stream.h:
 
 C:\AController\AquariumSteuerung\DS3231/ds3231.h:
 
 C:\AController\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h:
 
-../Definitions.h:
+..\Definitions.h:
