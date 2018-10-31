@@ -1,12 +1,9 @@
 
 
 #include "Arduino.h"
-<<<<<<< HEAD
 #include "LiquidCrystal\LiquidCrystal.h" //LCD-Bibliothek laden
-=======
 //#include <LiquidCrystal.h> //LCD-Bibliothek laden
 
->>>>>>> I2C
 #include <OneWire.h>
 #include <LiquidCrystal_I2C.h>
 #include <ds3231.h>

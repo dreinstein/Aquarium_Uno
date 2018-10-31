@@ -2,18 +2,11 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-<<<<<<< HEAD:.ino.cpp
-//This file has been generated on 2018-01-31 20:28:55
+//This file has been generated on 2018-10-31 21:15:30
 
 #include "Arduino.h"
 #include "Arduino.h"
 #include "LiquidCrystal\LiquidCrystal.h"
-=======
-//This file has been generated on 2018-10-31 19:48:17
-
-#include "Arduino.h"
-#include "Arduino.h"
->>>>>>> I2C:sloeber.ino.cpp
 #include <OneWire.h>
 #include <LiquidCrystal_I2C.h>
 #include <ds3231.h>

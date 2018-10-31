@@ -39,11 +39,6 @@ SUBDIRS := \
 . \
 DS3231 \
 DallasTemperature \
-<<<<<<< HEAD
-LiquidCrystal \
-OneWire-master \
-core/core \
-=======
 NTPClient-3.1.0 \
 NTPClient-3.1.0/examples/Advanced \
 NTPClient-3.1.0/examples/Basic \
@@ -60,5 +55,4 @@ libraries/WiFi/src \
 libraries/WiFi/src/utility \
 libraries/Wire/src \
 libraries/Wire/src/utility \
->>>>>>> I2C
 

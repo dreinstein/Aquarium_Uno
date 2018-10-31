@@ -8,14 +8,11 @@
 #ifndef DISPLAY_H_
 #define DISPLAY_H_
 
-<<<<<<< HEAD
 #include "DallasTemperature\DallasTemperature.h"
 #include "LiquidCrystal\LiquidCrystal.h"
-=======
 #include <DallasTemperature.h>
 //#include <LiquidCrystal.h>
 #include <LiquidCrystal_I2C.h>
->>>>>>> I2C
 #include <ds3231.h>
 
 
