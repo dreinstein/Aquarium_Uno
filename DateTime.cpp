@@ -4,8 +4,8 @@
  *  Created on: 31.03.2018
  *      Author: Udo
  */
-
-#include "Arduino.h"
+/*
+//#include "Arduino.h"
 #include <EthernetUdp.h>
 #include <Ethernet.h>
 
@@ -14,11 +14,12 @@
 const int NTP_PACKET_SIZE = 48; // NTP time stamp is in the first 48 bytes of the message
 byte packetBuffer[ NTP_PACKET_SIZE]; //buffer to hold incoming and outgoing packets
 EthernetUDP Udp;
-char timeServer[] = "time.nist.gov"; // time.nist.gov NTP server
+char timeServer[] = "pool.ntp.org";
+//char timeServer[] = "time.nist.gov"; // time.nist.gov NTP server
 unsigned int localPort = 8888;       // local port to listen for UDP packets
 
 
-DateTime::DateTime() {
+/*DateTime::DateTime() {
 	summerWinterTimeArray[0][0] = 2018;
 	summerWinterTimeArray[0][1] = 10;
 	summerWinterTimeArray[0][2] = 28;
@@ -27,7 +28,7 @@ DateTime::DateTime() {
 	summerWinterTimeArray[1][1] = 3;
 	summerWinterTimeArray[1][2] = 31;
 
-	summerWinterTimeArray[2][0] = 2019;
+/*	summerWinterTimeArray[2][0] = 2019;
 	summerWinterTimeArray[2][1] = 10;
 	summerWinterTimeArray[2][2] = 27;
 
@@ -37,7 +38,7 @@ DateTime::DateTime() {
 
 	summerWinterTimeArray[4][0] = 2020;
 	summerWinterTimeArray[4][1] = 10;
-	summerWinterTimeArray[0][2] = 25;
+	summerWinterTimeArray[4][2] = 25;
 
 
 	hour=0;
@@ -144,17 +145,20 @@ int DateTime::getTimeDiff(Time time)
 {
 	// it is wintertime as default
 	int timeDiff = 1;
-
+	Serial.print("get to Function getTimeDiff month is: ");
+	Serial.println(time.mon);
 	// timechange every mach and octoer
 	// other month not critical
 	// between April and September it is summerTime, add two hours
 	if((time.mon > MARCH) && (time.mon < OCTOBER))
 	{
+		Serial.println("after march and before october, no change of time ");
 		return 2;
 	}
 	// between january and February and november and december it is wintertime add one hour
 	else if ((time.mon < MARCH) && (time.mon > OCTOBER))
 	{
+		Serial.println("before march and after october, no change of time ");
 		return 1;
 	}
 
@@ -166,42 +170,51 @@ int DateTime::getTimeDiff(Time time)
 		// search year
 		if(summerWinterTimeArray[yearIndex][0]==time.year)
 		{
+			Serial.println("it is the year ");
 			// if it is october go one arry further, and it is wintertime
 			if(time.mon  == OCTOBER)
 			{
+				Serial.println("it is october ");
 				// second half of the year
-				yearIndex = yearIndex+1;
+				Serial.println("it is wintertime ");
 				summerTime = false;
 			}
 			break;
 		}
 	}
 
+	Serial.println(summerWinterTimeArray[yearIndex][2]);
+	Serial.println(time.date);
 	// it is either october or march, so get the day
 	if(time.date == summerWinterTimeArray[yearIndex][2])
 	{
+
 		// summertime and after 2 oclock, go for two hours
 		if(summerTime && (time.hour > CHANGEHOURE))
 		{
+			Serial.println("summerTime, timeDiff 2");
 			timeDiff = 2;
 		}
 		// wintertime and after 2 oclock, go for one hours
 		else if(!summerTime && (time.hour > CHANGEHOURE))
 		{
+			Serial.println("wintertime, timeDiff 1");
 			timeDiff = 1;
 		}
 		// summertime and 2 oclock or before, go for two hours (it is still wintertime)
 		else if(summerTime)
 		{
+			Serial.println("timeDiff 1");
 			timeDiff = 1;
 		}
 		//
 		else
 		{
+			Serial.println("else, timeDiff 2");
 			timeDiff = 2;
 		}
 	}
 	return timeDiff;
-}
+}*/
 
 

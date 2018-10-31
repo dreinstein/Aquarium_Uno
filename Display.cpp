@@ -8,16 +8,19 @@
 #include "Display.h"
 #include "Definitions.h"
 #include "Arduino.h"
+#include <LiquidCrystal_I2C.h>
+//#include <LiquidCrystal.h>
 
 
 
-Display::Display(DallasTemperature *_tempSensor, LiquidCrystal_I2C  *_lcd, DS3231  *_rtc)
+Display::Display(DallasTemperature *_tempSensor, LiquidCrystal_I2C *_lcd, DS3231  *_rtc)
 {
 	tempSensors = _tempSensor;
 	lcd = _lcd;
 	rtc = _rtc;
 	displayStatus = TEMPERATUR_DISPLAY_STATUS::WATERTEMP_OFF;
 }
+
 
 Display::~Display()
 {
@@ -63,14 +66,18 @@ void Display::setWaterTemp(float temp)
 
 void Display::setTime()
 {
+	//Serial.print(rtc->getDateStr());
+	Serial.println("setTime");
+
 	lcd->setCursor(0, 1);
-//	Serial.print(rtc->getDateStr());
+	Serial.println("setTime");
 	lcd->print(rtc->getDOWStr(FORMAT_SHORT));
 	lcd->setCursor(8, 1);
+	Serial.println(rtc->getTimeStr());
 	lcd->print(rtc->getTimeStr());
-//	Serial.print("Time:   ");
-//	Serial.print(rtc->getTimeStr());
-//	Serial.print("\n");
+	Serial.print("Time:   ");
+	Serial.print(rtc->getTimeStr());
+	Serial.print("\n");
 }
 
 
@@ -103,7 +110,7 @@ float Display::getWaterTemperature()
 }
 
 
-void Display::setAirTemp()
+/*void Display::setAirTemp()
 {
 	lcd->setCursor(CURSERPOSTEMPSTRING,0);
 	lcd->clear();
@@ -112,7 +119,7 @@ void Display::setAirTemp()
 	lcd->print(rtc->getTemp());
 	lcd->setCursor(CURSERPOSCSTRING, 0);
 	lcd->print("C");
-}
+}*/
 
 
 

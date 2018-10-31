@@ -1,0 +1,11 @@
+/.metadata/
+/DS3231/
+/DallasTemperature/
+/NTPClient-3.1.0/
+/OneWire-master/
+/core/
+/libraries/
+/makefile
+/sources.mk
+/subdir.mk
+/objects.mk

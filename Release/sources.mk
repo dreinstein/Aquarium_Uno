@@ -56,7 +56,7 @@ libraries/Ethernet/src \
 libraries/Ethernet/src/utility \
 libraries/HID/src \
 libraries/Keyboard/src \
-libraries/LiquidCrystal \
+libraries/LiquidCrystal/src \
 libraries/LiquidCrystal_I2C-1.1.2 \
 libraries/SPI/src \
 libraries/WiFi/src \

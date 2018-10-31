@@ -29,10 +29,12 @@ void Light::setLighOnOff()
 {
 	if(isLightOn() == LIGHT_STATUS::LIGHT_ON)
 	{
+		Serial.println("light on");
 		setLightOn();
 	}
 	else if(isLightOn() == LIGHT_STATUS::LIGHT_OFF)
 	{
+		Serial.println("light off");
 		setLightOff();
 	}
 	else //
@@ -44,14 +46,27 @@ void Light::setLighOnOff()
 
 void Light::setLightOn()
 {
-//	Serial.print("Light On\n");
+	Serial.println("Light On\n");
 	digitalWrite(RELAIS2,ACTIVE);
 }
 
 void Light::setLightOff()
 {
-//	Serial.print("Light Off\n");
+	Serial.println("Light Off\n");
 	digitalWrite(RELAIS2,INACTIVE);
+}
+
+String Light::getStatus()
+{
+	if(isLightOn()== LIGHT_STATUS::LIGHT_ON)
+	{
+		return "on";
+	}
+	else
+	{
+		return "off";
+	}
+
 }
 
 

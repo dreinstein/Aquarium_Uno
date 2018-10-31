@@ -4,18 +4,18 @@
 #include "Arduino.h"
 
 // ARDUINO IN/OUT
-#define RELAIS2       9     //LIGHT  //OUT, gelb LED, graues Kabel
-#define RELAIS3       10     //PUMP  //OUT, rote LED , orange Kabel
-#define RELAIS4       11     //HEATER //OUT, blau LED. yellow Kabel,
+#define RELAIS2       9     /// 6   //LIGHT  //OUT, gelb LED, graues Kabel
+#define RELAIS3       12    /// 7    //PUMP  //OUT, rote LED , orange Kabel
+#define RELAIS4       11    /// 8    //HEATER //OUT, blau LED. yellow Kabel,
 #define TEMPSENSOR    8	    //TempSensor  //IN
 #define SERVICEBUTTON 7     //ServiceButton  hight: Pump, TempSensor out//IN
-#define ONOFFBUTTON   6    //ONOFFBUTTON     hight: Pump, TempSensor, Light out //IN
-#define LCD_RS		  12
-#define LCD_ENABLE	  13
-#define LCD_D0		  5
-#define LCD_D1		  4
-#define LCD_D2		  3
-#define LCD_D3		  2
+#define ONOFFBUTTON   6    //ONOFFBUTTON +																														v     hight: Pump, TempSensor, Light out //IN
+//#define LCD_RS		  12
+//#define LCD_ENABLE	  13
+//#define LCD_D0		  5
+//#define LCD_D1		  4
+//#define LCD_D2		  3
+//#define LCD_D3		  2
 
 
 // SDA PinA4
@@ -33,6 +33,11 @@
 // Relais1 light
 // Relais2 pump
 // Relais3 heater
+
+// Belegung serielle Schnittstelle
+// 1 - 5V
+// 5 - Ground
+// 6,7,8,9 Daten
 
 
 // LCD positions
@@ -57,6 +62,7 @@
 #define ACTUALISE_LIGHT_MULTiPLIER  20
 #define ACTUALISE_TIME_MULTIPLIER   800
 #define ACTUALISE_PUMP_MULTIPLIER   2000
+//#define ACTUALISE_NTC_MULTIPLIER    500
 #define ACTUALISE_NTC_MULTIPLIER    80000
 
 // macro calculate when to actualise

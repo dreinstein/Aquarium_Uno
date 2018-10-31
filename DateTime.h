@@ -5,12 +5,12 @@
  *      Author: Udo
  */
 
-#ifndef DATETIME_H_
+/*#ifndef DATETIME_H_
 #define DATETIME_H_
 
 #include "DS3231.h"
 
-#define ARRAYYEAR_COUNT 5
+#define ARRAYYEAR_COUNT 2
 #define ARRAYDATECOUNT  3
 #define SUMMERTIMEDIFF 2
 #define WINTERTIMEDIFF 1

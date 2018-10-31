@@ -28,6 +28,8 @@ enum class TEMPERATUR_DISPLAY_STATUS
 class Display {
 public:
 	Display (DallasTemperature *_tempSensor,LiquidCrystal_I2C *_lcd, DS3231  *_rtc );
+	//Display (DallasTemperature *_tempSensor,LiquidCrystal *_lcd, DS3231  *_rtc );
+	Display();
 	virtual ~Display();
 	void setTemperature();
 	float getWaterTemperature();
@@ -41,6 +43,7 @@ private:
 	TEMPERATUR_DISPLAY_STATUS displayStatus;
 	DallasTemperature *tempSensors;
 	LiquidCrystal_I2C *lcd;
+	//LiquidCrystal *lcd;
 	DS3231  *rtc;
 
 	// strings for lcd
