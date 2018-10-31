@@ -11,7 +11,7 @@
 
 Pump::Pump() {
 	// TODO Auto-generated constructor stub
-
+	status = PUMP_STATUS::PUMP_OFF;
 }
 
 Pump::~Pump() {
@@ -21,6 +21,7 @@ Pump::~Pump() {
 void Pump::setPumpOn()
 {
 	digitalWrite(RELAIS3,ACTIVE);
+	status = PUMP_STATUS::PUMP_ON;
 	Serial.println("Pump On");
 
 }
@@ -28,6 +29,20 @@ void Pump::setPumpOn()
 void Pump::setPumpOff()
 {
 	digitalWrite(RELAIS3,INACTIVE);
+	status = PUMP_STATUS::PUMP_OFF;
 	Serial.println("Pump Off");
+}
+
+String Pump::getStatus()
+{
+	if(status == PUMP_STATUS::PUMP_ON)
+	{
+		return "on";
+	}
+	else
+	{
+		return "off";
+	}
+
 }
 

@@ -14,7 +14,7 @@
 #define TIMELIGHTON_FIRST_OVERWEEK   "07:00:00"
 #define TIMELIGHTOFF_FIRST_OVERWEEK  "12:00:00"
 #define TIMELIGHTON_SECOND_OVERWEEK  "13:00:00"
-#define TIMELIGHTOFF_SECOND_OVERWEEK "23:00:00"
+#define TIMELIGHTOFF_SECOND_OVERWEEK "21:45:00"
 #define TIMELIGHTON_FIRST_WEEKEND    "08:30:00"
 #define TIMELIGHTOFF_FIRST_WEEKEND   "12:00:00"
 #define TIMELIGHTON_SECOND_WEEKEND    "13:30:00"
@@ -38,6 +38,7 @@ public:
 	void setLighOnOff();
 	void setLightOn();
 	void setLightOff();
+	String getStatus();
 private:
 	LIGHT_STATUS isLightOn();
 	bool isWeekend();

@@ -2,19 +2,50 @@
 # Automatically-generated file. Do not edit!
 ################################################################################
 
--include ../makefile.init
+-include ..\makefile.init
 
 RM := del 
 
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir.mk
+<<<<<<< HEAD
 -include core\core/subdir.mk
 -include OneWire-master/subdir.mk
 -include LiquidCrystal/subdir.mk
 -include DallasTemperature/subdir.mk
 -include DS3231/subdir.mk
 -include .metadata\.plugins\org.eclipse.cdt.make.core/subdir.mk
+=======
+-include libraries\Wire\src\utility\subdir.mk
+-include libraries\Wire\src\subdir.mk
+-include libraries\WiFi\src\utility\subdir.mk
+-include libraries\WiFi\src\subdir.mk
+-include libraries\SPI\src\subdir.mk
+-include libraries\LiquidCrystal_I2C-1.1.2\subdir.mk
+-include libraries\LiquidCrystal\src\subdir.mk
+-include libraries\Keyboard\src\subdir.mk
+-include libraries\HID\src\subdir.mk
+-include libraries\Ethernet\src\utility\subdir.mk
+-include libraries\Ethernet\src\subdir.mk
+-include core\core\subdir.mk
+-include OneWire-master\subdir.mk
+-include NTPClient-3.1.0\examples\Basic\subdir.mk
+-include NTPClient-3.1.0\examples\Advanced\subdir.mk
+-include NTPClient-3.1.0\subdir.mk
+-include DallasTemperature\subdir.mk
+-include DS3231\examples\chipKit\DS3231_UnixTime\subdir.mk
+-include DS3231\examples\chipKit\DS3231_Temperature\subdir.mk
+-include DS3231\examples\chipKit\DS3231_Serial_Hard\subdir.mk
+-include DS3231\examples\chipKit\DS3231_Serial_Easy\subdir.mk
+-include DS3231\examples\Arduino\DS3231_UnixTime\subdir.mk
+-include DS3231\examples\Arduino\DS3231_Temperature\subdir.mk
+-include DS3231\examples\Arduino\DS3231_Serial_Hard\subdir.mk
+-include DS3231\examples\Arduino\DS3231_Serial_Easy\subdir.mk
+-include DS3231\subdir.mk
+-include .metadata\.plugins\org.eclipse.cdt.managedbuilder.core\subdir.mk
+-include .metadata\.plugins\org.eclipse.cdt.make.core\subdir.mk
+>>>>>>> I2C
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -50,43 +81,43 @@ ifneq ($(strip $(C_DEPS)),)
 endif
 endif
 
--include ../makefile.defs
+-include ..\makefile.defs
 
 # Add inputs and outputs from these tool invocations to the build variables 
 AR += \
-C:/Aquarium/AquariumSteuerung/Release/arduino.ar \
+D:\ArduinoUno\Release\arduino.ar \
 
 ELF += \
-AquariumSteuerung.elf \
+AquariumSteuerung_Uno.elf \
 
 HEX += \
-AquariumSteuerung.hex \
+AquariumSteuerung_Uno.hex \
 
 
 # All Target
-all: AquariumSteuerung
+all: AquariumSteuerung_Uno
 
 # Tool invocations
-AquariumSteuerung: $(HEX)
+AquariumSteuerung_Uno: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"C:\EclipseArduino\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "C:/Aquarium/AquariumSteuerung/Release/AquariumSteuerung.elf"
+	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "D:/ArduinoUno/Release/AquariumSteuerung_Uno.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
-C:/Aquarium/AquariumSteuerung/Release/arduino.ar: $(AR_OBJ)
+D:\ArduinoUno\Release\arduino.ar: $(AR_OBJ)
 	@echo 'Starting archiver'
-	"C:\EclipseArduino\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    C:/Aquarium/AquariumSteuerung/Release/arduino.ar $(AR_OBJ)
+	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc-ar" rcs    D:/ArduinoUno/Release/arduino.ar $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-AquariumSteuerung.elf: $(LINK_OBJ) $(AR)
+AquariumSteuerung_Uno.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"C:\EclipseArduino\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "C:\Aquarium\AquariumSteuerung/Release/AquariumSteuerung.elf"   $(LINK_OBJ) $(AR)   C:/Aquarium/AquariumSteuerung/Release/arduino.ar  "-LC:\Aquarium\AquariumSteuerung/Release" -lm
+	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "D:\ArduinoUno/Release/AquariumSteuerung_Uno.elf"   $(LINK_OBJ)   D:/ArduinoUno/Release/arduino.ar  "-LD:\ArduinoUno/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
-AquariumSteuerung.hex: $(ELF)
+AquariumSteuerung_Uno.hex: $(ELF)
 	@echo 'Create eeprom image'
 	${A.RECIPE.OBJCOPY.EEP.PATTERN}
 	${A.RECIPE.OBJCOPY.HEX.PATTERN}
@@ -101,4 +132,4 @@ clean:
 .PHONY: all clean dependents
 .SECONDARY:
 
--include ../makefile.targets
+-include ..\makefile.targets
