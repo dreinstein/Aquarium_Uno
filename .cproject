@@ -57,6 +57,23 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/WiFi/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/HID}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/HID/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Keyboard}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Keyboard/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal_I2C-1.1.2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/WiFi}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.2041198576" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -97,6 +114,23 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/WiFi/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/HID}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/HID/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Keyboard}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Keyboard/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal_I2C-1.1.2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/WiFi}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.484692547" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -137,6 +171,23 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/WiFi/src}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/Wire}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/AquariumSteuerung_Uno/libraries/Wire/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/core/core}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/core/variant}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/HID}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/HID/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Keyboard}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Keyboard/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/LiquidCrystal_I2C-1.1.2}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/SPI/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/WiFi}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/WiFi/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Wire}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/Aquarium_Uno/libraries/Wire/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.1296843314" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
@@ -153,9 +204,37 @@
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
 		</cconfiguration>
+		<cconfiguration id="io.sloeber.core.toolChain.release.984648386">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="io.sloeber.core.toolChain.release.984648386" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildProperties="" id="io.sloeber.core.toolChain.release.984648386" name="Release" parent="org.eclipse.cdt.build.core.emptycfg">
+					<folderInfo id="io.sloeber.core.toolChain.release.984648386.1129774355" name="/" resourcePath="">
+						<toolChain id="io.sloeber.core.toolChain.release.106426495" name="Arduino Toolchain (Sloeber edition)" superClass="io.sloeber.core.toolChain.release">
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="io.sloeber.targetplatform.876584625" name="Arduino Target" osList="all" superClass="io.sloeber.targetplatform"/>
+							<builder buildPath="${workspace_loc:/Aquarium_Uno}/Release" id="io.sloeber.sketch.builder.2113343777" managedBuildOn="true" name="Arduino sketch builder.Release" superClass="io.sloeber.sketch.builder"/>
+							<tool id="io.sloeber.tool.sketch.compiler.cpp.959746176" name="Arduino C++ Compiler" superClass="io.sloeber.tool.sketch.compiler.cpp"/>
+							<tool id="io.sloeber.tool.compiler.c.1785616524" name="Arduino C Compiler" superClass="io.sloeber.tool.compiler.c"/>
+							<tool id="io.sloeber.tool.sketch.compiler.s.876722372" name="Arduino Assembler" superClass="io.sloeber.tool.sketch.compiler.s"/>
+							<tool id="io.sloeber.tool.ar.626029935" name="Arduino archiver" superClass="io.sloeber.tool.ar"/>
+							<tool id="io.sloeber.tool.combine.1288938755" name="Arduino combiner" superClass="io.sloeber.tool.combine"/>
+							<tool id="io.sloeber.tool.objcopy.eep.363594726" name="Arduino tool Create eeprom" superClass="io.sloeber.tool.objcopy.eep"/>
+							<tool id="io.sloeber.tool.size.1346039327" name="Arduino tool Print Size" superClass="io.sloeber.tool.size"/>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="AquariumSteuerung.null.1100610360" name="AquariumSteuerung"/>
+		<project id="Aquarium_Uno.null.1521567643" name="Aquarium_Uno"/>
 	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>

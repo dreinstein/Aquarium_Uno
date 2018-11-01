@@ -1,5 +1,5 @@
 Light.cpp.o: ..\Light.cpp ..\Light.h \
- D:\code\Neu\AController\AquariumSteuerung\DS3231/ds3231.h \
+ D:\code\Neu\Aquarium_Uno\DS3231/ds3231.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
@@ -11,13 +11,13 @@ Light.cpp.o: ..\Light.cpp ..\Light.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/USBAPI.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h \
- D:\code\Neu\AController\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h \
+ D:\code\Neu\Aquarium_Uno\DS3231/hardware/avr/HW_AVR_defines.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/HardwareSerial.h \
  ..\Definitions.h
 
 ..\Light.h:
 
-D:\code\Neu\AController\AquariumSteuerung\DS3231/ds3231.h:
+D:\code\Neu\Aquarium_Uno\DS3231/ds3231.h:
 
 D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
@@ -41,7 +41,7 @@ D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Ardu
 
 D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\variants\standard/pins_arduino.h:
 
-D:\code\Neu\AController\AquariumSteuerung\DS3231/hardware/avr/HW_AVR_defines.h:
+D:\code\Neu\Aquarium_Uno\DS3231/hardware/avr/HW_AVR_defines.h:
 
 D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/HardwareSerial.h:
 

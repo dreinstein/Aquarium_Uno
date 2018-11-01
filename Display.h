@@ -9,7 +9,7 @@
 #define DISPLAY_H_
 
 #include "DallasTemperature\DallasTemperature.h"
-#include "LiquidCrystal\LiquidCrystal.h"
+//#include "LiquidCrystal\LiquidCrystal.h"
 #include <DallasTemperature.h>
 //#include <LiquidCrystal.h>
 #include <LiquidCrystal_I2C.h>

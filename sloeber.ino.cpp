@@ -2,11 +2,10 @@
 //This is a automatic generated file
 //Please do not modify this file
 //If you touch this file your change will be overwritten during the next build
-//This file has been generated on 2018-10-31 21:15:30
+//This file has been generated on 2018-11-01 12:05:54
 
 #include "Arduino.h"
 #include "Arduino.h"
-#include "LiquidCrystal\LiquidCrystal.h"
 #include <OneWire.h>
 #include <LiquidCrystal_I2C.h>
 #include <ds3231.h>

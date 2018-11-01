@@ -71,20 +71,20 @@ AR += \
 D:\code\Neu\Aquarium_Uno\Release\arduino.ar \
 
 ELF += \
-Aquarium_Uno.elf \
+AquariumSteuerung_Uno.elf \
 
 HEX += \
-Aquarium_Uno.hex \
+AquariumSteuerung_Uno.hex \
 
 
 # All Target
-all: Aquarium_Uno
+all: AquariumSteuerung_Uno
 
 # Tool invocations
-Aquarium_Uno: $(HEX)
+AquariumSteuerung_Uno: $(HEX)
 	@echo 'Building target: $@'
 	@echo 'Printing size:'
-	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "D:/code/Neu/Aquarium_Uno/Release/Aquarium_Uno.elf"
+	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-size" -A "D:/code/Neu/Aquarium_Uno/Release/AquariumSteuerung_Uno.elf"
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -94,13 +94,13 @@ D:\code\Neu\Aquarium_Uno\Release\arduino.ar: $(AR_OBJ)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Aquarium_Uno.elf: $(LINK_OBJ) $(AR)
+AquariumSteuerung_Uno.elf: $(LINK_OBJ) $(AR)
 	@echo 'Starting combiner'
-	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "D:\code\Neu\Aquarium_Uno/Release/Aquarium_Uno.elf"   $(LINK_OBJ)   D:/code/Neu/Aquarium_Uno/Release/arduino.ar  "-LD:\code\Neu\Aquarium_Uno/Release" -lm
+	"D:\sloeber\/arduinoPlugin/packages/arduino/tools/avr-gcc/4.9.2-atmel3.5.4-arduino2/bin/avr-gcc" -Wall -Wextra -Os -g -flto -fuse-linker-plugin -Wl,--gc-sections -mmcu=atmega328p -o "D:\ArduinoUno/Release/AquariumSteuerung_Uno.elf"   $(LINK_OBJ)   D:/code/Neu/Aquarium_Uno/Release/arduino.ar  "-LD:\ArduinoUno/Release" -lm
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Aquarium_Uno.hex: $(ELF)
+AquariumSteuerung_Uno.hex: $(ELF)
 	@echo 'Create eeprom image'
 	${A.RECIPE.OBJCOPY.EEP.PATTERN}
 	${A.RECIPE.OBJCOPY.HEX.PATTERN}

@@ -1,7 +1,7 @@
 DallasTemperature\DallasTemperature.cpp.o: \
  ..\DallasTemperature\DallasTemperature.cpp \
  ..\DallasTemperature\DallasTemperature.h \
- D:\code\Neu\AController\AquariumSteuerung\OneWire-master/OneWire.h \
+ D:\code\Neu\Aquarium_Uno\OneWire-master/OneWire.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/binary.h \
  D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/WCharacter.h \
@@ -16,7 +16,7 @@ DallasTemperature\DallasTemperature.cpp.o: \
 
 ..\DallasTemperature\DallasTemperature.h:
 
-D:\code\Neu\AController\AquariumSteuerung\OneWire-master/OneWire.h:
+D:\code\Neu\Aquarium_Uno\OneWire-master/OneWire.h:
 
 D:\sloeber\arduinoPlugin\packages\arduino\hardware\avr\1.6.21\cores\arduino/Arduino.h:
 
